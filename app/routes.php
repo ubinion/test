@@ -1,35 +1,10 @@
 <?php
+Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@index'));
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+Route::get('home', array('as'=>'home', 'uses'=>'HomeController@home'));
 
-Route::get('/', function()
-{
-	$data=array();
+Route::get('logout',array('as'=>'logout', 'uses'=>'HomeController@logout'));
 
-	if(Auth::check()){
-		$data=Auth::user();
-	}
+Route::get('login/fb',array('as'=>'fb_login', 'uses'=>'LoginFacebookController@login'));
 
-	return View::make('index')->with('data',$data);
-});
-
-Route::get('home', function()
-{
-	return View::make('home');
-});
-
-Route::get('login/fb','LoginFacebookController@login');
-Route::get('login/fb/callback','LoginFacebookController@callback');
-Route::get('logout',function(){
-	Auth::logout();
-	return Redirect::to('/');
-});
+Route::get('login/fb/callback',array('as'=>'fb_callback', 'uses'=>'LoginFacebookController@callback'));
