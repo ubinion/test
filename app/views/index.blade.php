@@ -52,6 +52,9 @@
 			{{HTML::link('logout','logout')}}
 		@endif
 
+		<br>
+		<a href="{{ URL::route('account-create') }}"> Create Account </a>
+
 	</div>
 </body>
 </html>
