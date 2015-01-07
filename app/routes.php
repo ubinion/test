@@ -22,6 +22,11 @@ Route::get('/', function()
 	return View::make('index')->with('data',$data);
 });
 
+Route::get('home', function()
+{
+	return View::make('home');
+});
+
 Route::get('login/fb','LoginFacebookController@login');
 Route::get('login/fb/callback','LoginFacebookController@callback');
 Route::get('logout',function(){
