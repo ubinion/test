@@ -1,0 +1,11 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+	symlinks = false
+	sharedrepository = 1
+[receive]
+	denyNonFastforwards = true
+[remote "origin"]
+	url = https://github.com/ubinion/test.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
