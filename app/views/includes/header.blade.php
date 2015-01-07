@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://ubinion.com"><img src="./assets/img/logo/UBINION-120x29.png" alt="Ubinion" class="brand" height="29" width="120"> </a>
+      <a class="navbar-brand" href="http://ubinion.com"><img src="img/logo/UBINION-120x29.png" alt="Ubinion" class="brand" height="29" width="120"> </a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
