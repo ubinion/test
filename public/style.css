@@ -1,0 +1,293 @@
+/* General Demo Style */
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body, html { font-size: 100%; padding: 0; margin: 0;}
+
+/* Clearfix hack */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	color: #1a202c;
+	background: #fff;
+ 	padding-top: 80px;
+ 	margin-bottom: 60px; /* Margin bottom by footer height */	
+}
+/*Top Nav Bar style*/
+.navbar-inverse {
+    background-color: #1a202c;
+    height: 2.55556em;
+}
+.navbar-collapse {
+	border-top: none;
+	background-color: #1a202c;
+}
+
+.brand {
+	margin-top: -6px;
+	margin-bottom: 25px
+}
+.logo_homepage{
+	margin-top: 15px;
+	margin-bottom: 25px
+}
+/*sign up button style*/
+.signup{
+	color: #fff;
+	margin-top: 9px;
+	padding-top: 5px;
+	background-color: #ff754f;
+	border-color: transparent;
+}
+.signup:hover{
+	color: #fff;
+	background-color: #D93B0F;
+	border-color: #D93B0F;
+}
+.signup:focus{
+	color: #fff;
+	background-color: #D93B0F;
+	border-color: #D93B0F;
+}
+.signup-header{
+	background-color: #fff
+}
+.section-wrapper span {
+    background: none repeat scroll 0 0 #f1f1f1;
+    display: inline-block;
+    padding: 0 0.5em;
+    position: relative;
+    top: -0.8em;
+}
+/*#signupModal {
+    position: absolute;
+    padding: 12%;
+}*/
+/*Login button style*/
+.login{
+	color: #fff;
+	margin-top: 9px;
+	padding-top: 5px;
+	background-color: #1a202c;
+	border-color: #fff
+}
+.login:active{
+	background-color: #1F7872;
+	border-color: #fff;
+}
+.login:hover{
+	color: #fff;
+	background-color: #1F7872;
+	border-color: #1F7872;
+}
+.login:focus{
+	color: #fff;
+	background-color: #1F7872;
+	border-color: #1F7872;
+}
+/*Search bar*/
+.search-bar{
+	border-right: none;
+}
+.search-option{
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-left: none;
+	border-right: none;
+}
+/* Search Result styles
+-------------------------------------------------- */
+#paper-result-area{
+	margin-top: 10px;
+}
+.search-subject>.search-subject-heading{
+    background-color: #1a202c;
+	border-color: #BFBFBF;
+}
+.panel {
+	font-size: 18px;
+	text-align: center;
+	color: #7A7A7A;
+	background-color: #ffffff; 
+	border-radius: 0px;
+}
+.panel-heading{
+	font-weight: bold;
+	border-top-left-radius: 0px;
+	border-top-right-radius:0px;
+	padding: 5px 10px;
+}
+.panel-primary {
+	border-color: #1a202c;
+}
+.panel-body{
+    text-transform:capitalize;
+	max-height: 50px;
+}
+
+.see_all, .see_all:hover{
+	color: #7A7A7A;
+}
+
+/*Past year download modal*/
+.table-hover, th{
+	color: #4F4F4F;
+	text-align: center;
+}
+.view{
+	margin-top: -4px;
+	margin-left: 15px;
+	font-size: 15px;
+	color: #C9C9C9;
+	text-align: left;
+}
+.update{
+	margin-left: 15px;
+	font-size: 15px;
+	color: #C9C9C9;
+	text-align: left;
+	margin-bottom: -20px;
+}
+.glyphicon-download{
+	color: #02D943;
+	font-size: 1.2em;
+}
+
+.glyphicon-download:hover{
+	color: #007824;
+	font-size: 1.2em;
+}
+/* User account
+-------------------------------------------------- */
+.btn-file {
+	margin-top: 5px;
+    position: relative;
+    overflow: hidden;
+    }
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+    }
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+.text-muted {
+ color: #fff; 
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: #1a202c;
+  font-size: 15px;
+}
+.footer_container {
+  width: auto;
+  text-align: center;
+}
+.footer_container .text-muted {
+  margin-top: 8px;
+}
+
+.footer_container .about{
+  position: relative;
+  padding: 0 20px;
+  color: #72B095
+}
+ /*--------------------------------------------------  
+About Page glyphicon styles*/
+.name{
+	font-weight: bold;
+}
+.position{
+	color: #A8A8A8;
+}
+.glyphicon-heart {
+	color: #FF006A;
+	font-size: 4em;
+
+}
+.glyphicon-wrench{
+	color: #FF7700;
+	font-size: 4em;
+
+}
+.glyphicon-globe{
+	color: #639FFF;
+	font-size: 4em;
+}
+ /*--------------------------------------------------  
+End of Sticky footer styles*/
+ 
+ /*--------------------------------------------------  
+Contact Modal styles*/
+#ContactModal{
+  font-family:'Lato', Calibri, Arial, sans-serif;
+  color: #5C5A5A;
+}
+
+.form-control{
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.modal-content{
+	border-radius: 0;
+}
+.modal-header{
+  background-color: #1a202c;
+}
+.modal-title{
+	color: #ffffff
+}
+
+.close-modal{
+	background-color: #ffffff;
+	color: #4F4F4F;
+	margin-top: 0px;
+}
+.close{
+	color: #ffffff;
+	opacity: 10;
+}
+.close:hover{
+	color: #E60B0B;
+	opacity: 10;
+}
+
+.container > header {
+	text-align: center;
+}
+
+.loading-mid{
+	background-image:url(../assets/img/loading/64x64.gif); 
+	height:67px;
+	width:67px;
+	background-repeat: no-repeat;
+	margin:auto
+}
+
+.loading-small{
+	background-image:url(../assets/img/checked.gif); 
+	height:21px;
+	width:21px;
+	background-repeat: no-repeat;
+	margin:auto
+}
