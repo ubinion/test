@@ -1,6 +1,7 @@
 # Confidential #
 ###################
 app/config/database.php
+app/config/facebook.php
 
 # Compiled source #
 ###################
