@@ -2,6 +2,7 @@
 ###################
 app/config/database.php
 app/config/facebook.php
+app/config/mail.php
 .htaccess
 
 # Compiled source #

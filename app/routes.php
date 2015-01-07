@@ -1,35 +1,34 @@
 <?php
+Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@index'));
+
+Route::get('home', array('as'=>'home', 'uses'=>'HomeController@home'));
+
+Route::get('logout',array('as'=>'logout', 'uses'=>'HomeController@logout'));
+
+Route::get('login/fb',array('as'=>'fb_login', 'uses'=>'LoginFacebookController@login'));
+
+Route::get('login/fb/callback',array('as'=>'fb_callback', 'uses'=>'LoginFacebookController@callback'));
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
+|	Unauthenticated group
 */
+Route::group(array('before'=>'guest'),function(){
 
-Route::get('/', function()
-{
-	$data=array();
+	/*
+	|	CSRF protection group
+	*/
+	Route::group(array('before'=>'csrf'),function(){
 
-	if(Auth::check()){
-		$data=Auth::user();
-	}
+		/*
+		|	create account (POST)
+		*/
+		Route::post('/account/create',array('as'=>'account-create-post','uses'=>'AccountController@postCreate'));
 
-	return View::make('index')->with('data',$data);
-});
+		});
 
-Route::get('home', function()
-{
-	return View::make('home');
-});
+	/*
+	|	create account (GET)
+	*/
+	Route::get('/account/create',array('as'=>'account-create','uses'=>'AccountController@getCreate'));
 
-Route::get('login/fb','LoginFacebookController@login');
-Route::get('login/fb/callback','LoginFacebookController@callback');
-Route::get('logout',function(){
-	Auth::logout();
-	return Redirect::to('/');
 });

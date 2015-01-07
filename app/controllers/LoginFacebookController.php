@@ -1,6 +1,6 @@
 <?php
 
-class LoginFacebookController extends \BaseController {
+class LoginFacebookController extends BaseController {
 
 	private $fb;
 
