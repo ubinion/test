@@ -13,9 +13,23 @@
 		</div>
 <br>
 		<div class="field">
-			Username: <input type="text" name="uid_fb">
+			FB UID: <input type="text" name="uid_fb">
 			@if($errors->has('uid_fb'))
 				{{$errors->first('uid_fb')}}
+			@endif
+		</div>
+<br>
+		<div class="field">
+			First Name: <input type="text" name="first_name" {{ Input::old('first_name') ? 'value="' .e(Input::old('first_name')). '"':'' }}>
+			@if($errors->has('first_name'))
+				{{$errors->first('first_name')}}
+			@endif
+		</div>
+<br>
+		<div class="field">
+			Last Name: <input type="text" name="last_name" {{ Input::old('last_name') ? 'value="' .e(Input::old('last_name')). '"':'' }}>
+			@if($errors->has('last_name'))
+				{{$errors->first('last_name')}}
 			@endif
 		</div>
 <br>

@@ -36,6 +36,10 @@
 <body>
 	<div class="welcome">
 		
+		@if(Session::has('global'))
+			<p>{{Session::get('global')}}</p>
+		@endif
+
 		@if(Session::has('message'))
 			<p>{{Session::get('message')}}</p>
 
@@ -53,7 +57,7 @@
 		@endif
 
 		<br>
-		<a href="{{ URL::route('account-create') }}"> Create Account </a>
+		@include('includes.navigation')
 
 	</div>
 </body>
