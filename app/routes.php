@@ -3,11 +3,21 @@ Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@index'));
 
 Route::get('home', array('as'=>'home', 'uses'=>'HomeController@home'));
 
-Route::get('logout',array('as'=>'logout', 'uses'=>'HomeController@logout'));
-
 Route::get('login/fb',array('as'=>'fb_login', 'uses'=>'LoginFacebookController@login'));
 
 Route::get('login/fb/callback',array('as'=>'fb_callback', 'uses'=>'LoginFacebookController@callback'));
+
+/*
+|	Authenticated group
+*/
+Route::group(array('before'=>'auth'),function(){
+
+	/*
+	|	Sign Out(GET)
+	*/
+	Route::get('/account/signout',array('as'=>'account-signout', 'uses'=>'AccountController@getSignOut'));
+});
+
 
 /*
 |	Unauthenticated group
@@ -25,6 +35,17 @@ Route::group(array('before'=>'guest'),function(){
 		Route::post('/account/create',array('as'=>'account-create-post','uses'=>'AccountController@postCreate'));
 
 		});
+
+	/*
+	|	sign in (GET)
+	*/
+	Route::get('/account/signin',array('as'=>'account-signin','uses'=>'AccountController@getSignIn'));
+
+	/*
+	|	sign in (POST)
+	*/
+	Route::post('/account/signin',array('as'=>'account-signin-post','uses'=>'AccountController@postSignIn'));
+
 
 	/*
 	|	create account (GET)

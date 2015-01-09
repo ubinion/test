@@ -17,10 +17,4 @@ class HomeController extends BaseController {
 		return View::make('index')->with('data',$data);
 	}
 
-	public function logout(){
-		
-		Auth::logout();
-		return Redirect::to('/');
-	}
-
 }

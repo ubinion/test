@@ -36,6 +36,12 @@
 <body>
 	<div class="welcome">
 		
+		@if(Auth::check())
+			<h1>Hello, {{Auth::user()->last_name}}</h1>
+		@else
+			<p>not logged in</p>
+		@endif
+
 		@if(Session::has('global'))
 			<p>{{Session::get('global')}}</p>
 		@endif
@@ -43,14 +49,12 @@
 		@if(Session::has('message'))
 			<p>{{Session::get('message')}}</p>
 
-
 		@endif
 
 		@if(empty($data))
 			<h1>No No No.</h1>
 			{{ HTML::link('/login/fb','Login with Facebook') }}
 		@else
-			<h1>Hello World</h1>
 			<img src="{{$data->photo_url}}" alt=""/>
 			<p>{{ $data->email}}</p>
 			{{HTML::link('logout','logout')}}
