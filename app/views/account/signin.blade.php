@@ -21,6 +21,13 @@
 			@endif
 		</div>
 <br>
+		<div class="field">
+			<input type="checkbox" name="remember" id="remember">
+			<label for="remember">
+				Remember
+			</label>
+		</div>
+
 		<input type="submit" value="Submit">
 		{{ Form::token() }}
 	</form>

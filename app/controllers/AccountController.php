@@ -24,13 +24,14 @@ class AccountController extends BaseController {
 		}
 		else{
 
-			//auth user to signin
+			$remember = (Input::has('remember')) ? true : false; 
 
+			//auth user to signin
 			$auth =	Auth::attempt(array(
 					'email'		=>	Input::get('email'),
 					'password'	=>	Input::get('password'),
 					'active' 	=>	1
-			));
+			), $remember);
 
 			if($auth){
 

@@ -57,7 +57,6 @@
 		@else
 			<img src="{{$data->photo_url}}" alt=""/>
 			<p>{{ $data->email}}</p>
-			{{HTML::link('logout','logout')}}
 		@endif
 
 		<br>
