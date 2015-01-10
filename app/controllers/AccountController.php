@@ -52,6 +52,60 @@ class AccountController extends BaseController {
 		return Redirect::route('landing');
 	}
 
+	public function getChgPw(){
+
+		return View::make('account.password');
+	}
+
+	public function postChgPw(){
+
+		$validator = Validator::make(Input::all(),
+			array(
+
+				'old_password'	=>'required',
+				'new_password'	=>'required | min:6',
+				'new_password_2'	=>'required | same:new_password'
+
+			)
+		);
+
+		if ($validator->fails()){
+
+			return Redirect::route('account-chg-pw')
+					->withErrors($validator)
+					->withInput();
+		}else{
+
+			$user = User::find(Auth::user()->id);
+
+			$old_password = Input::get('old_password');
+			$new_password = Input::get('new_password');
+
+			//if old password and the password in db is match
+			if(Hash::check($old_password, $user->getAuthPassword())){
+				//if password provided matched
+				$user->password=Hash::make($new_password);
+
+				if ($user->save()){
+
+					//return with success msg after saved to db
+					return Redirect::route('landing')
+							->with('global','Your password has been changed');
+				}
+
+			}else{
+
+				//return error msg wrong old password
+					return Redirect::route('account-chg-pw')
+							->with('global','Your old password is wrong. Try again');
+			}
+
+		}
+
+		return Redirect::route('account-chg-pw')->with('global','We could not change your password. Try again');
+
+	}
+
 	public function getCreate(){
 		return View::make('account.create');
 	}

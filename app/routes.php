@@ -13,9 +13,26 @@ Route::get('login/fb/callback',array('as'=>'fb_callback', 'uses'=>'LoginFacebook
 Route::group(array('before'=>'auth'),function(){
 
 	/*
+	|	CSRF protection group
+	*/
+	Route::group(array('before'=>'csrf'),function(){
+
+		/*
+	|	Change password (POST)
+	*/
+	Route::post('/account/change-password',array('as'=>'account-chg-pw-post', 'uses'=>'AccountController@postChgPw'));
+
+	});
+	/*
+	|	Change password (GET)
+	*/
+	Route::get('/account/change-password',array('as'=>'account-chg-pw', 'uses'=>'AccountController@getChgPw'));
+
+	/*
 	|	Sign Out(GET)
 	*/
 	Route::get('/account/signout',array('as'=>'account-signout', 'uses'=>'AccountController@getSignOut'));
+
 });
 
 
