@@ -10,6 +10,14 @@ Route::get('login/fb/callback',array('as'=>'fb_callback', 'uses'=>'LoginFacebook
 /*
 |	Authenticated group
 */
+Route::get('user/{username}',array(
+		'as' 	=> 'profile-user',
+		'uses'	=> 'ProfileController@user'
+	));
+
+/*
+|	Authenticated group
+*/
 Route::group(array('before'=>'auth'),function(){
 
 	/*
@@ -51,7 +59,7 @@ Route::group(array('before'=>'guest'),function(){
 		*/
 		Route::post('/account/create',array('as'=>'account-create-post','uses'=>'AccountController@postCreate'));
 
-		});
+	});
 
 	/*
 	|	sign in (GET)
@@ -63,6 +71,20 @@ Route::group(array('before'=>'guest'),function(){
 	*/
 	Route::post('/account/signin',array('as'=>'account-signin-post','uses'=>'AccountController@postSignIn'));
 
+	/*
+	|	forgot password (GET)
+	*/
+	Route::get('/account/forgot-password',array('as'=>'account-forgot-pw','uses'=>'AccountController@getForgotPw'));
+
+	/*
+	|	forgot password (POST)
+	*/
+	Route::post('/account/forgot-password',array('as'=>'account-forgot-pw-post','uses'=>'AccountController@postForgotPw'));
+
+	/*
+	|	recover password (GET)
+	*/
+	Route::get('/account/recover/{code}', array('as'=>'account-recover', 'uses'=>'AccountController@getRecover'));
 
 	/*
 	|	create account (GET)

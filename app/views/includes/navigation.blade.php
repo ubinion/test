@@ -8,6 +8,7 @@
 		@else
 			<br><a href="{{ URL::route('account-signin')}}"> Sign In </a>
 			<br><a href="{{ URL::route('account-create')}}"> Create account </a>
+			<br><a href="{{ URL::route('account-forgot-pw')}}"> Forgot password </a>
 		@endif
 	</ul>
 </nav>

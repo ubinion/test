@@ -52,6 +52,77 @@ class AccountController extends BaseController {
 		return Redirect::route('landing');
 	}
 
+	public function getForgotPw(){
+
+		return View::make('account.forgot_password');
+	}
+
+	public function postForgotPw(){
+
+		$user = User::where('email','=',Input::get('email'));
+
+		//if user not 0
+		if($user->count()){
+
+			//if password provided matched
+			$user 					= $user->first();
+
+			//generate new activate code and new password
+			$code 					= str_random(60);
+			$password 				= str_random(10);
+
+			$user->activate_code	= $code;
+			$user->password_temp	= Hash::make($password);
+
+			if($user->save()){
+
+				Mail::send('emails.auth.forgot_mail',array('link' => URL::route('account-recover', $code), 'name' => $user->last_name, 'password'=>$password), function($message) use ($user){
+					$message->to($user->email, $user->last_name)->subject('Your new password');
+				});				
+				
+				//return with success msg after saved to db
+				return Redirect::route('landing')
+						->with('global','Your password has been changed. Check your mail now');
+
+			}
+
+
+			//return with success msg after saved to db
+			//return Redirect::route('landing')
+			//		->with('global','Your password has been changed');
+			die('Error in save new password and mail');
+
+
+		}else{
+
+			//return error msg wrong old password
+			return Redirect::route('account-chg-pw')
+					->with('global','Your old password is wrong. Try again');
+		}
+	}
+
+	public function getRecover($code){
+
+		$user = User::where('activate_code','=',$code)->where('password_temp','!=','');
+
+		if ($user->count()){
+
+			$user 					= $user->first();
+			$user->password 		= $user->password_temp;
+			$user->password_temp	= '';
+			$user->activate_code	= '';
+
+			if($user->save()){
+
+				//return with success msg after saved to db
+				return Redirect::route('landing')
+						->with('global','Your can now login with new password provided in email');
+			}
+		}
+
+		return 'Error in get Recover';
+	}
+
 	public function getChgPw(){
 
 		return View::make('account.password');
