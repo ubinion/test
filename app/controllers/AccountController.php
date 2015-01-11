@@ -28,7 +28,7 @@ class AccountController extends BaseController {
 
 			//auth user to signin
 			$auth =	Auth::attempt(array(
-					'email'		=>	Input::get('email'),
+					'email'		=>	Str::lower(Input::get('email')),
 					'password'	=>	Input::get('password'),
 					'active' 	=>	1
 			), $remember);
@@ -59,7 +59,7 @@ class AccountController extends BaseController {
 
 	public function postForgotPw(){
 
-		$user = User::where('email','=',Input::get('email'));
+		$user = User::where('email','=',Str::lower(Input::get('email')));
 
 		//if user not 0
 		if($user->count()){
@@ -202,7 +202,7 @@ class AccountController extends BaseController {
 					->withInput();
 		}
 		else{
-			$email		=	Input::get('email');
+			$email		=	Str::lower(Input::get('email'));
 			$uid_fb		=	Input::get('uid_fb');
 			$first_name	=	Input::get('first_name');
 			$last_name	=	Input::get('last_name');
