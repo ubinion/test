@@ -1,19 +1,11 @@
 <?php
-Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@index'));
+Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@home'));
 
 Route::get('home', array('as'=>'home', 'uses'=>'HomeController@home'));
 
 Route::get('login/fb',array('as'=>'fb_login', 'uses'=>'LoginFacebookController@login'));
 
 Route::get('login/fb/callback',array('as'=>'fb_callback', 'uses'=>'LoginFacebookController@callback'));
-
-/*
-|	Authenticated group
-*/
-Route::get('user/{username}',array(
-		'as' 	=> 'profile-user',
-		'uses'	=> 'ProfileController@user'
-	));
 
 /*
 |	Authenticated group
@@ -41,6 +33,14 @@ Route::group(array('before'=>'auth'),function(){
 	*/
 	Route::get('/account/signout',array('as'=>'account-signout', 'uses'=>'AccountController@getSignOut'));
 
+	/*
+	|	Edit profile(GET)
+	*/
+	Route::get('user/{username}',array(
+		'as' 	=> 'profile-user',
+		'uses'	=> 'ProfileController@user'
+	));	
+
 });
 
 
@@ -55,21 +55,27 @@ Route::group(array('before'=>'guest'),function(){
 	Route::group(array('before'=>'csrf'),function(){
 
 		/*
-		|	create account (POST)
+		|	signup account (POST)
 		*/
-		Route::post('/account/create',array('as'=>'account-create-post','uses'=>'AccountController@postCreate'));
+		Route::post('/account/signup',array('as'=>'account-signup-post','uses'=>'AccountController@postSignUp'));
 
 	});
 
-	/*
-	|	sign in (GET)
-	*/
-	Route::get('/account/signin',array('as'=>'account-signin','uses'=>'AccountController@getSignIn'));
 
 	/*
-	|	sign in (POST)
+	|	signup account (GET)
 	*/
-	Route::post('/account/signin',array('as'=>'account-signin-post','uses'=>'AccountController@postSignIn'));
+	Route::get('/account/signup',array('as'=>'account-signup','uses'=>'AccountController@getSignUp'));
+
+	/*
+	|	log in (GET)
+	*/
+	Route::get('/account/login',array('as'=>'account-login','uses'=>'AccountController@getLogIn'));
+
+	/*
+	|	log in (POST)
+	*/	
+	Route::post('/account/login',array('as'=>'account-login-post','uses'=>'AccountController@postLogIn'));
 
 	/*
 	|	forgot password (GET)
@@ -85,11 +91,6 @@ Route::group(array('before'=>'guest'),function(){
 	|	recover password (GET)
 	*/
 	Route::get('/account/recover/{code}', array('as'=>'account-recover', 'uses'=>'AccountController@getRecover'));
-
-	/*
-	|	create account (GET)
-	*/
-	Route::get('/account/create',array('as'=>'account-create','uses'=>'AccountController@getCreate'));
 
 	/*
 	|	activate account (GET)

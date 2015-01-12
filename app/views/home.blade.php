@@ -1,87 +1,94 @@
-@extends('layouts.main')
+@extends('layouts.level-one')
 
 @section('content')
 
-	<header>
-		<h1><img src="img/logo/logo_homepage.beta.png" alt="Ubinion" class="logo_homepage" height="180" width="250"></h1>
-	</header>
-	<div class="clearfix">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3 col-xs-12">	
-				<div class="input-group">
-				  <input type="text" class="form-control search-bar" aria-label="...">
-				  <div class="input-group-btn">
-					<button type="button" class="btn btn-default search-option dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Lecturer <span class="caret"></span></button>
-					<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>					        
-					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-					  <li><a href="#" id="lecturer">Lecturer</a></li>	
-					  <li><a href="#" id="past-year">Past Year Paper</a></li>
-					  <li><a href="#">Hints</a></li>
-					  <li><a href="#">Confession</a></li>
-					</ul>
-				  </div><!-- /btn-group -->
-				</div><!-- /input-group -->
-			</div><!--/. col grid-->
-		</div><!--/. row-->
-	</div><!--/. clearrfix-->
-	<div class="row" id="paper-result-area">							
-		<!-- NOTE : The Area to display search result for subject-->
-	</div>			
+	<div class="container">
+	    <div class="row">
+	        <div class="[ col-lg-12]">
+	            <div class="[ panel panel-default ] panel-google-plus">
+	                <div class="dropdown">
+	                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+	                        <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+	                    </span>
+	                    <ul class="dropdown-menu" role="menu">
+	                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Report	</a></li>
+	                    </ul>
+	                </div>
+	                <div class="panel-google-plus-tags">
+	                    <ul>
+	                        <li>#Millennials</li>
+	                        <li>#Generation</li>
+	                    </ul>
+	                </div>
+	                <div class="panel-heading">
+	                    <img class="[ img-circle pull-left ]" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+	                </div>
+	                <div class="panel-body">
+	                    <p>Do people born in 2000 get to choose if they are Generation Y or Generation Z? How do you decide what generation you want to belong to?</p>
+	                </div>
+	                	<h5><span>Confess</span> - <span>Jun 27, 2014</span> </h5>
+	                <div class="panel-footer">
+	                    <button type="button" class="[ btn btn-default ]">
+	                    	<span class="glyphicon glyphicon-arrow-up"></span>+3
+	                    </button>
+	                    <button type="button" class="[ btn btn-default ]">
+	                        <span class="glyphicon glyphicon-arrow-down"></span>+1
+	                    </button>
+	                    <div class="input-placeholder">Add a comment...</div>
+	                </div>
+	                <div class="panel-google-plus-comment">
+	                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+	                    <div class="panel-google-plus-textarea">
+	                        <textarea rows="4"></textarea>
+	                        <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
+	                        <button type="reset" class="[ btn btn-default ]">Cancel</button>
+	                    </div>
+	                    <div class="clearfix"></div>
+	                </div>
+	            </div>
+	        </div><!--/.col-lg-12 -->
+			<div class="[ col-lg-12]">
+	            <div class="[ panel panel-default ] panel-google-plus">
+	                <div class="dropdown">
+	                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+	                        <span class="glyphicon glyphicon-flag"></span>
+	                    </span>
+	                    <ul class="dropdown-menu" role="menu">
+	                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Report	</a></li>
+	                    </ul>
+	                </div>
+	                <div class="panel-google-plus-tags">
+	                    <ul>
+	                        <li>#Millennials</li>
+	                        <li>#Generation</li>
+	                    </ul>
+	                </div>
+	                <div class="panel-heading">
+	                    <img class="[ img-circle pull-left ]" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+	                    <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+	                </div>
+	                <div class="panel-body">
+	                    <p>Do people born in 2000 get to choose if they are Generation Y or Generation Z? How do you decide what generation you want to belong to?</p>
+	                </div>
+	                <div class="panel-footer">
+	                    <button type="button" class="[ btn btn-default ]">+1</button>
+	                    <button type="button" class="[ btn btn-default ]">
+	                        <span class="[ glyphicon glyphicon-share-alt ]"></span>
+	                    </button>
+	                    <div class="input-placeholder">Add a comment...</div>
+	                </div>
+	                <div class="panel-google-plus-comment">
+	                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+	                    <div class="panel-google-plus-textarea">
+	                        <textarea rows="4"></textarea>
+	                        <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
+	                        <button type="reset" class="[ btn btn-default ]">Cancel</button>
+	                    </div>
+	                    <div class="clearfix"></div>
+	                </div>
+	            </div>
+	        </div><!--/.col-lg-12 -->		        
+	    </div><!--/.row -->
+	</div><!--/.container -->
+
 @stop
-
-@section('modal')
-
-	<!--contact modal -->
-	<div id="ContactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-		  <div class="modal-content">
-			<div class="modal-header">
-			  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			  <h4 class="modal-title" id="myModalLabel">Ubinion'd love to hear from you :)</h4>
-			</div>
-			<div class="modal-body">
-			  <form role="form" id="contact-form">
-			  <div class="form-group">
-				<label for="recipient-email" class="control-label">Email</label><!-- Sender Email-->
-				<input type="text" class="form-control" placeholder="user@email.com" name="cf_email" id="recipient-email">
-			  </div>
-			  <div class="form-group">
-				<label for="recipient-subject" class="control-label">Subject</label><!-- Sender Subject-->
-				<input type="subject" class="form-control" name="cf_subject" id="recipient-subject">
-			  </div>
-			  <div class="form-group">
-				<label for="message-text" class="control-label">Message:</label><!-- Sender Message-->
-				<textarea class="form-control" rows="4" name="cf_message" id="message-text"></textarea>
-				<span class="help-block contact-form-status"></span>
-			  </div>
-			   <div class="modal-footer">	
-				 <button type="submit" class="btn btn-success" value="send">Send</button>
-			   </div>		          
-			</form>
-			</div>
-		  </div>
-		</div>
-	</div><!--/.contact modal -->
-
-	<!--pass year modal -->
-	<div id="PastYearModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-		  <div class="modal-content">
-			<div class="modal-header">
-			  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			  <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Past Year Question</h4>
-			</div>
-			<div class="modal-body">
-				<table class="table table-hover">
-				<tr>
-					<th>Sem</th><th>Code</th><th>Subject</th><th>Download</th>	
-				</tr>	
-				<tr>
-					Searching Papers...
-				</tr>
-				</table>
-			</div>
-		  </div>
-		</div>
-	</div><!--/.pass year modal -->			
-@stop				

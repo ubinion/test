@@ -1,49 +1,33 @@
 <?php
 class AccountController extends BaseController {
 
-	public function getSignIn(){
+	public function getLogIn(){
 
-		return View::make('account.signin');
+		return View::make('account.login');
 	}
 
-	public function postSignIn(){
+	public function postLogIn(){
 
-		$validator = Validator::make(Input::all(),
-			array(
-				'email'		=>'required | email ',
-				'password'	=>'required | min:6',
-			)
-		);
+		$remember = (Input::has('remember')) ? true : false; 
 
-		if ($validator->fails()){
+		//auth user to login
+		$auth =	Auth::attempt(array(
+			'email'		=>	Str::lower(Input::get('email')),
+			'password'	=>	Input::get('password'),
+			'active' 	=>	1
+		), $remember);
 
-			//redirect sign in page if fail with error msg
-			return Redirect::route('account-signin')
-					->withErrors($validator)
-					->withInput();
+		if($auth){
+
+			return Redirect::intended('/')
+				->with('global','<p class="text-success">Logged In</p>');
+		}else{
+
+			return Redirect::route('account-login')->with('global','<p class="text-danger">Email/password wrong or account not activated</p>');
 		}
-		else{
-
-			$remember = (Input::has('remember')) ? true : false; 
-
-			//auth user to signin
-			$auth =	Auth::attempt(array(
-					'email'		=>	Str::lower(Input::get('email')),
-					'password'	=>	Input::get('password'),
-					'active' 	=>	1
-			), $remember);
-
-			if($auth){
-
-				return Redirect::intended('/')
-					->with('global','Logged In');
-			}else{
-
-				return Redirect::route('account-signin')->with('global','Email/password wrong or account not activated');
-			}
-		}
-
-		return Redirect::route('account-signin')->with('global','Failed to signin at the moment. Have you activated?');
+		
+		//falleback in case the user not redirected 
+		return Redirect::route('account-login')->with('global','<p class="text-danger">Failed to login at the moment. Have you activated?</p>');
 	}
 
 	public function getSignOut(){
@@ -81,23 +65,16 @@ class AccountController extends BaseController {
 				});				
 				
 				//return with success msg after saved to db
-				return Redirect::route('landing')
-						->with('global','Your password has been changed. Check your mail now');
+				return Redirect::route('account-forgot-pw')
+						->with('global','<p class="text-success">New password has been sent. Check your mail now</p>');
 
 			}
-
-
-			//return with success msg after saved to db
-			//return Redirect::route('landing')
-			//		->with('global','Your password has been changed');
-			die('Error in save new password and mail');
-
 
 		}else{
 
 			//return error msg wrong old password
-			return Redirect::route('account-chg-pw')
-					->with('global','Your old password is wrong. Try again');
+			return Redirect::route('account-forgot-pw')
+					->with('global','<p class="text-danger">Wrong email entered. Try again</p>');
 		}
 	}
 
@@ -115,8 +92,8 @@ class AccountController extends BaseController {
 			if($user->save()){
 
 				//return with success msg after saved to db
-				return Redirect::route('landing')
-						->with('global','Your can now login with new password provided in email');
+				return Redirect::route('account-login')
+						->with('global','<p class="text-success">Your can now login with new password provided in email</p>');
 			}
 		}
 
@@ -125,17 +102,14 @@ class AccountController extends BaseController {
 
 	public function getChgPw(){
 
-		return View::make('account.password');
+		return View::make('account.chg-password');
 	}
 
 	public function postChgPw(){
 
 		$validator = Validator::make(Input::all(),
 			array(
-
-				'old_password'	=>'required',
-				'new_password'	=>'required | min:6',
-				'new_password_2'	=>'required | same:new_password'
+				'new_password_2' =>'same:new_password'
 
 			)
 		);
@@ -160,52 +134,48 @@ class AccountController extends BaseController {
 				if ($user->save()){
 
 					//return with success msg after saved to db
-					return Redirect::route('landing')
-							->with('global','Your password has been changed');
+					return Redirect::route('account-chg-pw')
+							->with('global','<p class="text-success">Your password has been changed</p>');
 				}
 
 			}else{
 
 				//return error msg wrong old password
 					return Redirect::route('account-chg-pw')
-							->with('global','Your old password is wrong. Try again');
+							->with('global','<p class="text-danger">Your old password is wrong. Try again</p>');
 			}
 
 		}
 
-		return Redirect::route('account-chg-pw')->with('global','We could not change your password. Try again');
+		return Redirect::route('account-chg-pw')->with('global','<p class="text-danger">We could not change your password. Try again</p>');
 
 	}
 
-	public function getCreate(){
-		return View::make('account.create');
+	public function getSignUp(){
+		return View::make('account.signup');
 	}
 	
 
-	public function postCreate(){
+	public function postSignUp(){
 
 		$validator = Validator::make(Input::all(),
 			array(
-				'email'		=>'required | max:50 | email | unique:users',
-				'uid_fb'	=>'required | max:20 | min:3 | unique:users',
-				'first_name'=>'required',
-				'last_name'	=>'required',
-				'password'	=>'required | min:6',
-				'password2'	=>'required | same:password'
+				'email'				=>'unique:users',
+				'confirm_password'	=>'same:password'
 			)
 		);
 
 		if ($validator->fails()){
 
-			return Redirect::route('account-create')
+			return Redirect::route('account-signup')
 					->withErrors($validator)
 					->withInput();
 		}
 		else{
-			$email		=	Str::lower(Input::get('email'));
-			$uid_fb		=	Input::get('uid_fb');
-			$first_name	=	Input::get('first_name');
-			$last_name	=	Input::get('last_name');
+			$email				=	Str::lower(Input::get('email'));
+			$uid_fb				=	Input::get('uid_fb');
+			$first_name			=	Input::get('first_name');
+			$last_name			=	Input::get('last_name');
 			$password	=	Input::get('password');
 
 			//activation code
@@ -227,10 +197,10 @@ class AccountController extends BaseController {
 				//send activation mail
 				Mail::send('emails.auth.activate_mail', array('link'=> URL::route('account-activate',$code), 'name'=>$last_name),function($message) use ($user){
 						$message->to($user->email, $user->last_name)->subject('Activate Ubinion now');
-					});
+				});
 
-				return Redirect::route('landing')
-					->with('global','Verification email has been sent to '.$user->email.'. Please check your inbox');
+				return Redirect::route('account-signup')
+					->with('success_signup_msg','<p class="text-success">Verification email has been sent to '.$user->email.'. Please check your inbox</p>');
 			}
 		}
 	}
@@ -248,11 +218,11 @@ class AccountController extends BaseController {
 			$user->activate_code	=	'';
 
 			if($user->save()){
-				return Redirect::route('landing')->with('global','Account has been activated.');
+				return Redirect::route('landing')->with('global','<p class="text-success">Account has been activated.</p>');
 			}
 		}
 
-		return Redirect::route('landing')->with('global','We could not activate your account. Try again later');
+		return Redirect::route('landing')->with('global','<p class="text-danger">We could not activate your account. Try again later</p>');
 	}
 
 }

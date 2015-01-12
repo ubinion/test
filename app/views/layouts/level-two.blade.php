@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-    @include('includes.head')
+    @include('includes.head2')
 </head>
 <body>
 	<!---------- Header ---------->
@@ -11,21 +11,17 @@
 	    <nav class="navbar navbar-inverse navbar-fixed-top visible" id="desktop-header" role="navigation">
 	      	<div class="container">
 		        <div class="navbar-header">
-				  	@include('includes.header-left')
+				  	@include('includes.header-left2')
 				 	@include('includes.header-d-search-bar')
 				</div>
 
-
-	<?php $auth=0; ?>
-
-				@if($auth==0)
-					<!-- Show the login/signup button if user not logged in -->
-					@include('includes.header-right-not-auth')
-
-				@else
+				@if(Auth::check())
 					<!-- Show the Edit profile if user logged in -->
 					@include('includes.header-right-auth')
 
+				@else
+					<!-- Show the login/signup button if user not logged in -->
+					@include('includes.header-right-not-auth')
 				@endif
 		        
 	      	</div><!--/.container -->
@@ -48,7 +44,7 @@
         @include('includes.footer')
     </footer>
 	
-	 @include('includes.js-source')
+	 @include('includes.js-source2')
 	
 </body>
 </html>
