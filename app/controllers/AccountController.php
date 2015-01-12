@@ -18,7 +18,7 @@ class AccountController extends BaseController {
 		), $remember);
 
 		if($auth){
-
+			
 			return Redirect::intended('/')
 				->with('global','<p class="text-success">Logged In</p>');
 		}else{
@@ -102,7 +102,13 @@ class AccountController extends BaseController {
 
 	public function getChgPw(){
 
-		return View::make('account.chg-password');
+		$user=array();
+
+		if(Auth::check()){
+			$user=Auth::user();
+		}
+		
+		return View::make('account.chg-password')->with('user',$user);
 	}
 
 	public function postChgPw(){
@@ -218,7 +224,7 @@ class AccountController extends BaseController {
 			$user->activate_code	=	'';
 
 			if($user->save()){
-				return Redirect::route('landing')->with('global','<p class="text-success">Account has been activated.</p>');
+				return Redirect::route('account-login')->with('global','<p class="text-success">Account has been activated. You can login now.</p>');
 			}
 		}
 

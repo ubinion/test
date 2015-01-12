@@ -1,20 +1,15 @@
 <?php
 class HomeController extends BaseController {
 
-	public function home(){
-
-		return View::make('home');
-	}
-
 	public function index(){
 
-		$data=array();
+		$user=array();
 
 		if(Auth::check()){
-			$data=Auth::user();
+			$user=Auth::user();
 		}
 
-		return View::make('index')->with('data',$data);
+		return View::make('home')->with('user',$user);
 	}
 
 }

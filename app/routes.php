@@ -1,7 +1,7 @@
 <?php
-Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@home'));
+Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@index'));
 
-Route::get('home', array('as'=>'home', 'uses'=>'HomeController@home'));
+Route::get('home', array('as'=>'home', 'uses'=>'HomeController@index'));
 
 Route::get('login/fb',array('as'=>'fb_login', 'uses'=>'LoginFacebookController@login'));
 
