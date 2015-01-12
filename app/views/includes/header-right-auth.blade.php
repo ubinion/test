@@ -15,7 +15,7 @@
                                 </p>
                             </div>
                             <div class="col-lg-8">
-                                <p class="text-left text-center"><strong>Ubinion</strong></p>
+                                <p class="text-left text-center"><strong>{{ $user->last_name ? $user->last_name : 'Set your last name' }}</strong></p>
                                 <p class="text-left small text-center">Universiti Utara Malaysia</p>
 
                                 <p class="text-left text-center">
