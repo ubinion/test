@@ -135,8 +135,9 @@ class AccountController extends BaseController {
 
 				//return with success msg after saved to db
 				return Redirect::route('account-login')
-						->with('global','<div class="alert alert-success" role="alert">Your can now login with new password provided in email
+						->with('global','<div class="alert alert-success" role="alert">
 											<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+											Your can now login with new password provided in email
 										</div>');
 			}
 		}
@@ -316,15 +317,17 @@ class AccountController extends BaseController {
 			//save to db
 			if($user->save()){
 				//redirect to login page with success msg
-				return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">Account has been activated. You can login now.
+				return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">
 																						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+																						Account has been activated. You can login now.	
 																					</div>');
 			}
 		}
 
 		//redirect to login page with alternative success msg
-		return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">Your account already activated. You can login now.
+		return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">
 																				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+																				Your account already activated. You can login now.		
 																			</div>');
 	}
 
