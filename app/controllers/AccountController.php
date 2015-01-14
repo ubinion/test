@@ -39,13 +39,12 @@ class AccountController extends BaseController {
 		}
 		
 		//falleback in case the user not redirected 
-		return Redirect::route('account-login')->with('global','<p class="text-danger">Failed to login at the moment. Have you activated?</p>');
+		return Redirect::route('account-login')->with('global','<div class="alert alert-danger" role="alert">
+																  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+																  	<span class="sr-only">Error:</span>
+																  	Failed to login at the moment :( Have you activated your account?
+																</div>');
 	}
-		                    <div class="alert alert-danger" role="alert">
-							  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							  	<span class="sr-only">Error:</span>
-							  	Failed to login at the moment :(. Have you activated your account?
-							</div>
 
 	/*
 	|	Signout (get)
