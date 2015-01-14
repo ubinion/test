@@ -83,7 +83,7 @@ class AccountController extends BaseController {
 
 				//send email to user with new password and activate link
 				Mail::send('emails.auth.forgot_mail',array('link' => URL::route('account-recover', $code), 'name' => $user->last_name, 'password'=>$password), function($message) use ($user){
-					$message->to($user->email, $user->last_name)->subject('Your new password');
+					$message->to($user->email, $user->last_name)->subject("It's ok, it happens. Here is yours...");
 				});				
 				
 				//return to forgot-pw page
