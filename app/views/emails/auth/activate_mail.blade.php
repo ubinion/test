@@ -9,7 +9,7 @@
 		<table align="center" cellpadding="0" cellspacing="0" width="100%" style="border: solid #cccccc;">
 			<tr>
 				<td bgcolor="#1a202c" style="padding: 25px 0 25px 0;" align="center">
-					<img src="http://../../../../public/img/logo/logo_email.png" alt="Logo_Ubinion" width="250px" height="61px"/>
+					<img src="http://test.ubinion.com/public/img/logo/logo_email.png" alt="Logo_Ubinion" width="250px" height="61px"/>
 				</td>
 			</tr>
 			<tr>
