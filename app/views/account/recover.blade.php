@@ -1,4 +1,4 @@
-@extends('layouts.signup')
+@extends('layouts.level-two-no-m-search-bar')
 
 @section('content')
 	@if(Session::has('global'))

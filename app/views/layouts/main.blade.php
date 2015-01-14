@@ -39,8 +39,6 @@
 	</div><!--/.container -->
 	<!---------- /.Header ---------->
 	
-	@include('includes.modal-login')
-	@include('includes.modal-signup')
 	@include('includes.modal-contact')
 	@include('includes.modal-pastyear')
 	

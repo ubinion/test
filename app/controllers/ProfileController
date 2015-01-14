@@ -1,8 +1,0 @@
-<?php
-class ProfileController extends BaseController {
-
-	public function user($username){
-
-		return View::make('profile.user');
-	}
-}
