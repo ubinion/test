@@ -96,14 +96,21 @@ class AccountController extends BaseController {
 				
 				//return to forgot-pw page
 				return Redirect::route('account-forgot-pw')
-						->with('global','<div class="alert alert-success" role="alert">New password has been sent. Check your mail now</div>');
+						->with('global','<div class="alert alert-success" role="alert">
+											<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+											New password has been sent. Check your mail now
+										</div>');
 			}
 
 		}else{
 
 			//return error msg wrong old password
 			return Redirect::route('account-forgot-pw')
-					->with('global','<div class="alert alert-danger" role="alert">Wrong email entered. Try again</div>');
+					->with('global','<div class="alert alert-danger" role="alert">
+										<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										<span class="sr-only">Error:</span>
+										Wrong email entered. Try again
+									</div>');
 		}
 	}
 
@@ -128,7 +135,9 @@ class AccountController extends BaseController {
 
 				//return with success msg after saved to db
 				return Redirect::route('account-login')
-						->with('global','<div class="alert alert-success" role="alert">Your can now login with new password provided in email</div>');
+						->with('global','<div class="alert alert-success" role="alert">Your can now login with new password provided in email
+											<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+										</div>');
 			}
 		}
 
@@ -191,7 +200,9 @@ class AccountController extends BaseController {
 
 					//return with success msg after saved to db
 					return Redirect::route('account-chg-pw')
-							->with('global','<div class="alert alert-success" role="alert">Your password has been changed</div>');
+							->with('global','<div class="alert alert-info" role="alert">Your password has been changed
+												<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+											</div>');
 				}
 
 			}else{
@@ -278,7 +289,7 @@ class AccountController extends BaseController {
 				return Redirect::route('account-signup')
 					->with('success_signup_msg','<div class="alert alert-success" role="alert">
 													<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-													Verification email has been sent to '.$user->email.'. <br/>Please check your inbox
+													Verification email has been sent to '.$user->email.'. <br/>Please check your inbox.
 												</div>');
 			}
 		}
@@ -305,12 +316,16 @@ class AccountController extends BaseController {
 			//save to db
 			if($user->save()){
 				//redirect to login page with success msg
-				return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">Account has been activated. You can login now.</div>');
+				return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">Account has been activated. You can login now.
+																						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+																					</div>');
 			}
 		}
 
 		//redirect to login page with alternative success msg
-		return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">Your account already activated. You can login now.</div>');
+		return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">Your account already activated. You can login now.
+																				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+																			</div>');
 	}
 
 }
