@@ -45,7 +45,11 @@
 	                    <label for="inputUsernameEmail">Email</label>
 	                    <input class="form-control" type="text" name="email" {{ Input::old('email') ? 'value="' .e(Input::old('email')). '"':'' }} placeholder="Your Email" required/>
 	                    @if($errors->has('email'))
-							<p class="text-danger"> {{$errors->first('email')}}</p>
+	                    	<div class="alert alert-danger" role="alert">
+							  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  	<span class="sr-only">Error:</span> 
+							  	{{$errors->first('email')}}
+							</div>							  		                    
 						@endif
 
 	                   	<label for="inputPassword">Password</label>
