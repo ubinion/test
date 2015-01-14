@@ -31,11 +31,19 @@ class AccountController extends BaseController {
 				->with('global','<p class="text-success">Logged In</p>');
 		}else{
 			//redirect to login page with error message
-			return Redirect::route('account-login')->with('global','<p class="text-danger">Email/password wrong or account not activated</p>');
+			return Redirect::route('account-login')->with('global','<div class="alert alert-danger" role="alert">
+																	  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+																	  	<span class="sr-only">Error:</span>
+																	  	Email/password incorrect or account not activated
+																	</div>');
 		}
 		
 		//falleback in case the user not redirected 
-		return Redirect::route('account-login')->with('global','<p class="text-danger">Failed to login at the moment. Have you activated?</p>');
+		return Redirect::route('account-login')->with('global','<div class="alert alert-danger" role="alert">
+																  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+																  	<span class="sr-only">Error:</span>
+																  	Failed to login at the moment :( Have you activated your account?
+																</div>');
 	}
 
 	/*
@@ -83,19 +91,19 @@ class AccountController extends BaseController {
 
 				//send email to user with new password and activate link
 				Mail::send('emails.auth.forgot_mail',array('link' => URL::route('account-recover', $code), 'name' => $user->last_name, 'password'=>$password), function($message) use ($user){
-					$message->to($user->email, $user->last_name)->subject('Your new password');
+					$message->to($user->email, $user->last_name)->subject("It's ok, it happens. Here is yours...");
 				});				
 				
 				//return to forgot-pw page
 				return Redirect::route('account-forgot-pw')
-						->with('global','<p class="text-success">New password has been sent. Check your mail now</p>');
+						->with('global','<div class="alert alert-success" role="alert">New password has been sent. Check your mail now</div>');
 			}
 
 		}else{
 
 			//return error msg wrong old password
 			return Redirect::route('account-forgot-pw')
-					->with('global','<p class="text-danger">Wrong email entered. Try again</p>');
+					->with('global','<div class="alert alert-danger" role="alert">Wrong email entered. Try again</div>');
 		}
 	}
 
@@ -120,7 +128,7 @@ class AccountController extends BaseController {
 
 				//return with success msg after saved to db
 				return Redirect::route('account-login')
-						->with('global','<p class="text-success">Your can now login with new password provided in email</p>');
+						->with('global','<div class="alert alert-success" role="alert">Your can now login with new password provided in email</div>');
 			}
 		}
 
@@ -183,19 +191,27 @@ class AccountController extends BaseController {
 
 					//return with success msg after saved to db
 					return Redirect::route('account-chg-pw')
-							->with('global','<p class="text-success">Your password has been changed</p>');
+							->with('global','<div class="alert alert-success" role="alert">Your password has been changed</div>');
 				}
 
 			}else{
 
 				//return error msg wrong old password
 					return Redirect::route('account-chg-pw')
-							->with('global','<p class="text-danger">Your old password is wrong. Try again</p>');
+							->with('global','<div class="alert alert-danger" role="alert">
+											  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+											  	<span class="sr-only">Error:</span>
+											  	Your old password is wrong. Try again
+											</div>');
 			}
-
+			
 		}
 		//fallback for change password
-		return Redirect::route('account-chg-pw')->with('global','<p class="text-danger">We could not change your password. Try again</p>');
+		return Redirect::route('account-chg-pw')->with('global','<div class="alert alert-danger" role="alert">
+														  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+														  	<span class="sr-only">Error:</span>
+														  	We could not change your password. Try again
+														</div>');
 
 	}
 
@@ -255,12 +271,12 @@ class AccountController extends BaseController {
 
 				//send activation mail to the email
 				Mail::send('emails.auth.activate_mail', array('link'=> URL::route('account-activate',$code), 'name'=>$last_name),function($message) use ($user){
-						$message->to($user->email, $user->last_name)->subject('Activate Ubinion now');
+						$message->to($user->email, $user->last_name)->subject('Welcome to Ubinion!');
 				});
 
 				//back to sign up view with success msg
 				return Redirect::route('account-signup')
-					->with('success_signup_msg','<p class="text-success">Verification email has been sent to '.$user->email.'. Please check your inbox</p>');
+					->with('success_signup_msg','<div class="alert alert-success" role="alert">Verification email has been sent to '.$user->email.'. Please check your inbox</div>');
 			}
 		}
 	}
@@ -286,12 +302,12 @@ class AccountController extends BaseController {
 			//save to db
 			if($user->save()){
 				//redirect to login page with success msg
-				return Redirect::route('account-login')->with('account-active-msg','<p class="text-success">Account has been activated. You can login now.</p>');
+				return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">Account has been activated. You can login now.</div>');
 			}
 		}
 
 		//redirect to login page with alternative success msg
-		return Redirect::route('account-login')->with('account-active-msg','<p class="text-success">Your is already activated. You can login now.</p>');
+		return Redirect::route('account-login')->with('account-active-msg','div class="alert alert-info" role="alert">Your account already activated. You can login now.</div>');
 	}
 
 }
