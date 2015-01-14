@@ -51,7 +51,6 @@
 							  	{{$errors->first('email')}}
 							</div>							  		                    
 						@endif
-
 	                   	<label for="inputPassword">Password</label>
 	                    <input type="password" name="password" value="" class="form-control " placeholder="Password" pattern="^([a-zA-Z0-9_-]){6,20}$" title="Password must be 6-20 characters (alphabet, number or underscore only)" required/>
 

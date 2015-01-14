@@ -201,8 +201,9 @@ class AccountController extends BaseController {
 
 					//return with success msg after saved to db
 					return Redirect::route('account-chg-pw')
-							->with('global','<div class="alert alert-info" role="alert">Your password has been changed
-												<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+							->with('global','<div class="alert alert-info" role="alert">
+												<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
+												Your password has been changed	
 											</div>');
 				}
 
