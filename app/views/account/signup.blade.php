@@ -43,7 +43,7 @@
 	                        </div>
 	                    </div>
 	                    <label for="inputUsernameEmail">Email</label>
-	                    <input class="form-control" type="text" name="email" {{ Input::old('email') ? 'value="' .e(Input::old('email')). '"':'' }} placeholder="Your Email" required/>
+	                    <input class="form-control" type="email" name="email" {{ Input::old('email') ? 'value="' .e(Input::old('email')). '"':'' }} placeholder="Your Email" required/>
 	                    @if($errors->has('email'))
 							<p class="text-danger"> {{$errors->first('email')}}</p>
 						@endif
