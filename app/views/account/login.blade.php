@@ -23,7 +23,6 @@
 				@endif
 	        </div>
 	        <div class="form-group">
-	          	<a class="pull-right" href="{{ URL::route('account-forgot-pw') }}">Forgot password?</a>
 	          	<label for="inputPassword">Password</label>
 	          	<input id="inputPassword" class="form-control" type="password" name="password" pattern="^([a-zA-Z0-9_-]){6,20}$" title="Password must be 6-20 characters (alphabet, number or underscore only)" required>
 	        </div>
@@ -36,6 +35,7 @@
 	        <button type="submit" class="btn btn-success btn-block">
 	          	Login
 	        </button>
+	        <a class="pull-left forgot_password" href="{{ URL::route('account-forgot-pw') }}">Forgot password?</a>
 	    </form>
 	    <br>
 	    @if(Session::has('global'))

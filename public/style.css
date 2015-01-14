@@ -205,6 +205,9 @@ overflow: hidden;
  .login-title {
     text-align: center;
   }
+  .forgot_password{
+    margin-top: 15px;
+  }
 /*---------------------/. Login Form---------------------------*/
 
 /*--------------------- Sign Up Form---------------------------*/

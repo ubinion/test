@@ -17,7 +17,7 @@
 				 	<table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-family: Arial, sans-serif; font-size: 15px; border: 1px solid #cccccc; background-color: #fff ">
 						<tr>
 						   	<td style="text-transform:uppercase; padding:15px 0 0 15px;">
-						   		Hello, {{ $name }},
+						   		Hello {{ $name }},
 						   	</td>
 						</tr>
 						<tr>
@@ -36,7 +36,7 @@
 					  	</tr>
 					  	<tr>
 						   <td style="padding:15px 15px 15px 15px;">
-						    	Cheers!,<br/>
+						    	Cheers!<br/>
 						    	The Ubinion Team
 						   </td>
 					  	</tr>					  	

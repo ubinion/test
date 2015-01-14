@@ -290,7 +290,7 @@ class AccountController extends BaseController {
 				return Redirect::route('account-signup')
 					->with('success_signup_msg','<div class="alert alert-success" role="alert">
 													<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-													Verification email has been sent to '.$user->email.'. <br/>Please check your inbox.
+													Verification email has been sent to <strong>'.$user->email.'</strong> <br/>Please check your inbox.
 												</div>');
 			}
 		}
@@ -319,7 +319,7 @@ class AccountController extends BaseController {
 				//redirect to login page with success msg
 				return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">
 																						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-																						Account has been activated. You can login now.	
+																						Account has been activated. <br/>You can login now.	
 																					</div>');
 			}
 		}
@@ -327,7 +327,7 @@ class AccountController extends BaseController {
 		//redirect to login page with alternative success msg
 		return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">
 																				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-																				Your account already activated. You can login now.		
+																				Your account already activated. <br/>You can login now.		
 																			</div>');
 	}
 
