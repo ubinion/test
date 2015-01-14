@@ -32,7 +32,7 @@
 					  	</tr>																 		
 					  	<tr>
 						   <td style="font-family: Arial, sans-serif; font-size: 17px; padding:0 0 15px 15px;">
-						    	Your New password is : <strong>{{ $password }}</strong>
+						    	Your New password is: <strong>{{ $password }}</strong>
 						    </td>	
 					  	</tr>
 				 	</table>	
