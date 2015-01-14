@@ -2,7 +2,7 @@
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <strong>Ubinion</strong>
+                <strong>{{ $user->last_name ? $user->last_name : 'Set your last name' }}</strong>
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu user-dropdown-menu">
@@ -15,7 +15,7 @@
                                 </p>
                             </div>
                             <div class="col-lg-8">
-                                <p class="text-left text-center"><strong>{{ $user->last_name ? $user->last_name : 'Set your last name' }}</strong></p>
+                                <p class="text-left text-center"><strong>{{ $user->first_name." ".$user->last_name }}</strong></p>
                                 <p class="text-left small text-center">Universiti Utara Malaysia</p>
 
                                 <p class="text-left text-center">
