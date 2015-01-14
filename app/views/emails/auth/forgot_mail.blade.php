@@ -14,10 +14,10 @@
 			</tr>
 			<tr>
 				<td bgcolor="#f3f3f3" style="padding: 40px 30px 40px 30px;">
-				 	<table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-family: Arial, sans-serif; font-size: 17px; border: 1px solid #cccccc; background-color: #fff ">
+				 	<table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-family: Arial, sans-serif; font-size: 15px; border: 1px solid #cccccc; background-color: #fff ">
 						<tr>
 						   	<td style="text-transform:uppercase; padding:15px 0 0 15px;">
-						   		Dear {{ $name }},
+						   		Hello {{ $name }},
 						   	</td>
 						</tr>
 						<tr>
@@ -27,14 +27,20 @@
 						</tr>
 					  	<tr>
 						   <td style="padding:0 0 15px 15px;">
-						    	{{ $link}}
+						    	<a href="{{ $link}}"> Click to active your account</a>
 						   </td>
 					  	</tr>																 		
 					  	<tr>
-						   <td style="font-family: Arial, sans-serif; font-size: 17px; padding:0 0 15px 15px;">
+						   <td style="font-family: Arial, sans-serif; font-size: 15px; padding:0 0 15px 15px;">
 						    	Your New password is: <strong>{{ $password }}</strong>
 						    </td>	
 					  	</tr>
+					  	<tr>
+						   <td style="padding:15px 15px 15px 15px;">
+						    	Best regards,<br/>
+						    	The Ubinion Team
+						   </td>
+					  	</tr>						  	
 				 	</table>	
 				</td>
 			</tr>
