@@ -13,7 +13,15 @@
 		        <hr class="hr-or">
 		        <span class="span-or">or</span>
 		    </div>
-	    @endif  
+	    @endif
+
+	    @if(Session::has('global'))
+			{{Session::get('global')}}
+		@endif      		
+
+		@if(Session::has('account-active-msg'))
+			{{Session::get('account-active-msg')}}
+		@endif 	      
 	    <form action="{{ URL::route('account-login-post')}}" method="post" role="form">
 	        <div class="form-group">
 	          	<label for="inputUsernameEmail">Email</label>
@@ -26,7 +34,7 @@
 	          	<label for="inputPassword">Password</label>
 	          	<input id="inputPassword" class="form-control" type="password" name="password" pattern="^([a-zA-Z0-9_-]){6,20}$" title="Password must be 6-20 characters (alphabet, number or underscore only)" required>
 	        </div>
-	        <div class="checkbox pull-right">
+	        <div class="checkbox pull-left">
 	          	<label><input id="remember" type="checkbox" name="checkbox">Remember me </label>
 	        </div>
       
@@ -35,17 +43,7 @@
 	        <button type="submit" class="btn btn-success btn-block">
 	          	Login
 	        </button>
-	        <a class="pull-left forgot_password" href="{{ URL::route('account-forgot-pw') }}">Forgot password?</a>
-	    </form>
-	    <br>
-	    @if(Session::has('global'))
-			{{Session::get('global')}}
-		@endif      		
-
-		@if(Session::has('account-active-msg'))
-			{{Session::get('account-active-msg')}}
-		@endif  
-
-		        
+	        <a class="pull-right forgot_password" href="{{ URL::route('account-forgot-pw') }}">Forgot password?</a>
+	    </form> 
     </div><!--/.login-form -->	
 @stop
