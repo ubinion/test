@@ -307,7 +307,7 @@ class AccountController extends BaseController {
 		}
 
 		//redirect to login page with alternative success msg
-		return Redirect::route('account-login')->with('account-active-msg','div class="alert alert-info" role="alert">Your account already activated. You can login now.</div>');
+		return Redirect::route('account-login')->with('account-active-msg','<div class="alert alert-info" role="alert">Your account already activated. You can login now.</div>');
 	}
 
 }
