@@ -33,7 +33,11 @@
 	    </form>
 	    <br>
 	    @if($errors->has('new_password_2'))
-			<p class="text-danger">The password not same. Try again</p>
+        	<div class="alert alert-danger" role="alert">
+			  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			  	<span class="sr-only">Error:</span>
+			  	The password do not match
+			</div>
 		@endif
 				
 	    @if(Session::has('global'))

@@ -31,12 +31,21 @@ class AccountController extends BaseController {
 				->with('global','<p class="text-success">Logged In</p>');
 		}else{
 			//redirect to login page with error message
-			return Redirect::route('account-login')->with('global','<p class="text-danger">Email/password wrong or account not activated</p>');
+			return Redirect::route('account-login')->with('global','<div class="alert alert-danger" role="alert">
+																	  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+																	  	<span class="sr-only">Error:</span>
+																	  	Email/password incorrect or account not activated
+																	</div>');
 		}
 		
 		//falleback in case the user not redirected 
 		return Redirect::route('account-login')->with('global','<p class="text-danger">Failed to login at the moment. Have you activated?</p>');
 	}
+		                    <div class="alert alert-danger" role="alert">
+							  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  	<span class="sr-only">Error:</span>
+							  	Failed to login at the moment :(. Have you activated your account?
+							</div>
 
 	/*
 	|	Signout (get)
