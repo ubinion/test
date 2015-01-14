@@ -208,10 +208,10 @@ class AccountController extends BaseController {
 		}
 		//fallback for change password
 		return Redirect::route('account-chg-pw')->with('global','<div class="alert alert-danger" role="alert">
-														  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-														  	<span class="sr-only">Error:</span>
-														  	We could not change your password. Try again
-														</div>');
+																  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+																  	<span class="sr-only">Error:</span>
+																  	We could not change your password. Try again
+																</div>');
 
 	}
 
@@ -276,7 +276,10 @@ class AccountController extends BaseController {
 
 				//back to sign up view with success msg
 				return Redirect::route('account-signup')
-					->with('success_signup_msg','<div class="alert alert-success" role="alert">Verification email has been sent to '.$user->email.'. Please check your inbox</div>');
+					->with('success_signup_msg','<div class="alert alert-success" role="alert">
+													<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+													Verification email has been sent to '.$user->email.'. <br/>Please check your inbox
+												</div>');
 			}
 		}
 	}
