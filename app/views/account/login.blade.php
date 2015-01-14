@@ -7,11 +7,13 @@
     		<img src="../img/logo/logo_login.png" alt="logo" width="60px" height="60px" class="display_logo">
     		<legend class="login-title">Login</legend>
     	</div>
-    	<a href="#" class="btn btn-primary btn-block">Login In with Facebook</a>
-	    <div class="login-or">
-	        <hr class="hr-or">
-	        <span class="span-or">or</span>
-	    </div>	    	  	
+    	@if(! Session::has('account-active-msg'))
+	    	<a href="#" class="btn btn-primary btn-block">Login In with Facebook</a>
+		    <div class="login-or">
+		        <hr class="hr-or">
+		        <span class="span-or">or</span>
+		    </div>
+	    @endif  
 	    <form action="{{ URL::route('account-login-post')}}" method="post" role="form">
 	        <div class="form-group">
 	          	<label for="inputUsernameEmail">Email</label>
@@ -38,6 +40,12 @@
 	    <br>
 	    @if(Session::has('global'))
 			{{Session::get('global')}}
-		@endif      		          
+		@endif      		
+
+		@if(Session::has('account-active-msg'))
+			{{Session::get('account-active-msg')}}
+		@endif  
+
+		        
     </div><!--/.login-form -->	
 @stop

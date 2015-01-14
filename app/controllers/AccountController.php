@@ -1,13 +1,21 @@
 <?php
 class AccountController extends BaseController {
 
+	
+	/*
+	|	Login Page (get)
+	*/
 	public function getLogIn(){
 
 		return View::make('account.login');
 	}
 
+	/*
+	|	Login Page (post)
+	*/
 	public function postLogIn(){
 
+		//if remeber me is checked
 		$remember = (Input::has('remember')) ? true : false; 
 
 		//auth user to login
@@ -18,11 +26,11 @@ class AccountController extends BaseController {
 		), $remember);
 
 		if($auth){
-			
+			//redirect to home page
 			return Redirect::intended('/')
 				->with('global','<p class="text-success">Logged In</p>');
 		}else{
-
+			//redirect to login page with error message
 			return Redirect::route('account-login')->with('global','<p class="text-danger">Email/password wrong or account not activated</p>');
 		}
 		
@@ -30,44 +38,57 @@ class AccountController extends BaseController {
 		return Redirect::route('account-login')->with('global','<p class="text-danger">Failed to login at the moment. Have you activated?</p>');
 	}
 
+	/*
+	|	Signout (get)
+	*/
 	public function getSignOut(){
-
+		//logout
 		Auth::logout();
+
+		//redirect back to landing page
 		return Redirect::route('landing');
 	}
 
+	/*
+	|	Forgot password page (get)
+	*/
 	public function getForgotPw(){
-
+		//create forgot password view
 		return View::make('account.forgot_password');
 	}
 
+	/*
+	|	Forgot password page (post)
+	*/
 	public function postForgotPw(){
-
+		//find user where email = input email
 		$user = User::where('email','=',Str::lower(Input::get('email')));
 
-		//if user not 0
+		//if user found
 		if($user->count()){
 
-			//if password provided matched
+			//if match found
 			$user 					= $user->first();
 
 			//generate new activate code and new password
 			$code 					= str_random(60);
 			$password 				= str_random(10);
 
+			//update value in db
 			$user->activate_code	= $code;
 			$user->password_temp	= Hash::make($password);
 
+			//save to db
 			if($user->save()){
 
+				//send email to user with new password and activate link
 				Mail::send('emails.auth.forgot_mail',array('link' => URL::route('account-recover', $code), 'name' => $user->last_name, 'password'=>$password), function($message) use ($user){
 					$message->to($user->email, $user->last_name)->subject('Your new password');
 				});				
 				
-				//return with success msg after saved to db
+				//return to forgot-pw page
 				return Redirect::route('account-forgot-pw')
 						->with('global','<p class="text-success">New password has been sent. Check your mail now</p>');
-
 			}
 
 		}else{
@@ -78,17 +99,23 @@ class AccountController extends BaseController {
 		}
 	}
 
+	/*
+	|	Recover password (get from email link)
+	*/
 	public function getRecover($code){
-
+		//find user where activate code is match and password_temp ! empty
 		$user = User::where('activate_code','=',$code)->where('password_temp','!=','');
 
 		if ($user->count()){
-
+			//get user data
 			$user 					= $user->first();
+
+			//update values
 			$user->password 		= $user->password_temp;
 			$user->password_temp	= '';
 			$user->activate_code	= '';
 
+			//save to db
 			if($user->save()){
 
 				//return with success msg after saved to db
@@ -100,19 +127,29 @@ class AccountController extends BaseController {
 		return 'Error in get Recover';
 	}
 
+	/*
+	|	Change password (get)
+	*/
 	public function getChgPw(){
 
+		//initialize user array
 		$user=array();
 
+		//if auth user, get data
 		if(Auth::check()){
 			$user=Auth::user();
 		}
-		
+
+		//make change pw view with user data
 		return View::make('account.chg-password')->with('user',$user);
 	}
 
+	/*
+	|	Change password (post)
+	*/
 	public function postChgPw(){
 
+		//set validator, password 2 must same with password 1
 		$validator = Validator::make(Input::all(),
 			array(
 				'new_password_2' =>'same:new_password'
@@ -120,20 +157,25 @@ class AccountController extends BaseController {
 			)
 		);
 
+		//if violate validator
 		if ($validator->fails()){
 
+			//return to chg pw view with old input and error
 			return Redirect::route('account-chg-pw')
 					->withErrors($validator)
 					->withInput();
 		}else{
 
+			//get the user data where id is current user id
 			$user = User::find(Auth::user()->id);
 
+			//get values from input
 			$old_password = Input::get('old_password');
 			$new_password = Input::get('new_password');
 
 			//if old password and the password in db is match
 			if(Hash::check($old_password, $user->getAuthPassword())){
+
 				//if password provided matched
 				$user->password=Hash::make($new_password);
 
@@ -152,18 +194,25 @@ class AccountController extends BaseController {
 			}
 
 		}
-
+		//fallback for change password
 		return Redirect::route('account-chg-pw')->with('global','<p class="text-danger">We could not change your password. Try again</p>');
 
 	}
 
+	/*
+	|	Sign Up Page (get)
+	*/
 	public function getSignUp(){
+		//make the sign up view
 		return View::make('account.signup');
 	}
 	
-
+	/*
+	|	Sign Up Page (post)
+	*/
 	public function postSignUp(){
 
+		//set the validator
 		$validator = Validator::make(Input::all(),
 			array(
 				'email'				=>'unique:users',
@@ -171,22 +220,25 @@ class AccountController extends BaseController {
 			)
 		);
 
+		//if violate the validator
 		if ($validator->fails()){
-
+			//
 			return Redirect::route('account-signup')
 					->withErrors($validator)
 					->withInput();
 		}
 		else{
+			//get data from input
 			$email				=	Str::lower(Input::get('email'));
 			$uid_fb				=	Input::get('uid_fb');
 			$first_name			=	Input::get('first_name');
 			$last_name			=	Input::get('last_name');
 			$password	=	Input::get('password');
 
-			//activation code
+			//generate activation code
 			$code		=	str_random(60);
 
+			//insert new user to db
 			$user 	=	User::create(array(
 				'email'			=>	$email,
 				'uid_fb'		=>	$uid_fb,
@@ -198,37 +250,48 @@ class AccountController extends BaseController {
 
 			));
 
+			//if user inserted
 			if($user){
 
-				//send activation mail
+				//send activation mail to the email
 				Mail::send('emails.auth.activate_mail', array('link'=> URL::route('account-activate',$code), 'name'=>$last_name),function($message) use ($user){
 						$message->to($user->email, $user->last_name)->subject('Welcome to Ubinion!');
 				});
 
+				//back to sign up view with success msg
 				return Redirect::route('account-signup')
 					->with('success_signup_msg','<p class="text-success">Verification email has been sent to '.$user->email.'. Please check your inbox</p>');
 			}
 		}
 	}
 
+	/*
+	|	Activate account (get from email)
+	*/
 	public function getActivate($code){
 		
-		$user =	User::where('activate_code','=',$code)->where('active','=',0);
+		//find the user where activate_code is same and active is false
+		$user =	User::where('activate_code','=',$code);
 
+		//If user found
 		if($user->count()){
-
+			
+			//get user data
 			$user=$user->first();
 			
 			//update user active state
 			$user->active			=	1;
 			$user->activate_code	=	'';
 
+			//save to db
 			if($user->save()){
-				return Redirect::route('account-login')->with('global','<p class="text-success">Account has been activated. You can login now.</p>');
+				//redirect to login page with success msg
+				return Redirect::route('account-login')->with('account-active-msg','<p class="text-success">Account has been activated. You can login now.</p>');
 			}
 		}
 
-		return Redirect::route('landing')->with('global','<p class="text-danger">We could not activate your account. Try again later</p>');
+		//redirect to login page with alternative success msg
+		return Redirect::route('account-login')->with('account-active-msg','<p class="text-success">Your is already activated. You can login now.</p>');
 	}
 
 }

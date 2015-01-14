@@ -1,8 +1,6 @@
 <?php
 Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@index'));
 
-Route::get('home', array('as'=>'home', 'uses'=>'HomeController@index'));
-
 Route::get('login/fb',array('as'=>'fb_login', 'uses'=>'LoginFacebookController@login'));
 
 Route::get('login/fb/callback',array('as'=>'fb_callback', 'uses'=>'LoginFacebookController@callback'));
@@ -36,7 +34,7 @@ Route::group(array('before'=>'auth'),function(){
 	/*
 	|	Edit profile(GET)
 	*/
-	Route::get('user/{username}',array(
+	Route::get('user/{id}',array(
 		'as' 	=> 'profile-user',
 		'uses'	=> 'ProfileController@user'
 	));	
