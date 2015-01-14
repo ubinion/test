@@ -98,7 +98,7 @@ class AccountController extends BaseController {
 				return Redirect::route('account-forgot-pw')
 						->with('global','<div class="alert alert-success" role="alert">
 											<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-											New password has been sent. Check your mail now
+											New password has been sent. Please check your mail.
 										</div>');
 			}
 
@@ -109,7 +109,7 @@ class AccountController extends BaseController {
 					->with('global','<div class="alert alert-danger" role="alert">
 										<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 										<span class="sr-only">Error:</span>
-										Wrong email entered. Try again
+										Incorrect Email Address. Please try again.
 									</div>');
 		}
 	}
@@ -137,7 +137,7 @@ class AccountController extends BaseController {
 				return Redirect::route('account-login')
 						->with('global','<div class="alert alert-success" role="alert">
 											<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-											Your can now login with new password provided in email
+											Your can now login with a new password provided in email.
 										</div>');
 			}
 		}
