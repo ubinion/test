@@ -202,7 +202,7 @@ class AccountController extends BaseController {
 
 				//send activation mail
 				Mail::send('emails.auth.activate_mail', array('link'=> URL::route('account-activate',$code), 'name'=>$last_name),function($message) use ($user){
-						$message->to($user->email, $user->last_name)->subject('Activate Ubinion now');
+						$message->to($user->email, $user->last_name)->subject('Welcome to Ubinion!');
 				});
 
 				return Redirect::route('account-signup')
