@@ -19,7 +19,8 @@
                                 <p class="text-left small text-center">Universiti Utara Malaysia</p>
 
                                 <p class="text-left text-center">
-                                    <a href="{{ URL::route('account-chg-pw')}}" class="btn btn-primary btn-block btn-sm">Change Password</a>
+                                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> 
+                                    <a href="{{ URL::route('account-chg-pw')}}">Change Password</a>
                                 </p>
 
                                 <!------------- Temporary space between ---------->
