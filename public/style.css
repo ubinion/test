@@ -40,6 +40,13 @@ body {
 	margin-top: 15px;
 	margin-bottom: 25px
 }
+@media(max-width:767px) {
+    .navbar-right{
+        float:right;
+        padding-right: 15px;
+        /*margin-bottom: 15px;*/
+    }
+}
 /*-------------sign up button style-----------*/
 .signup{
 	color: #fff;
@@ -90,6 +97,12 @@ body {
 	color: #fff;
 	background-color: #1F7872;
 	border-color: #1F7872;
+}
+@media(max-width:767px) {
+    .signup, .login{
+        margin:0 0 0 0;
+
+    }
 }
 /*-------------------Nav-bar User account-------------------*/
 .navbar-login
