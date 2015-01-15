@@ -41,7 +41,7 @@ body {
 	margin-bottom: 25px
 }
 @media(max-width:767px) {
-    .navbar-right{
+    .not-auth-btn{
         float:right;
         padding-right: 15px;
         /*margin-bottom: 15px;*/

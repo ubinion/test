@@ -1,5 +1,5 @@
 <div id="navbar" class="navbar-collapse collapse">
-  	<ul class="nav navbar-nav navbar-right">
+  	<ul class="nav navbar-nav navbar-right not-auth-btn">
 		<a href="{{ URL::route('account-login') }}">
 		  	<button type="button" class="btn btn-primary login">
 				Login
