@@ -123,13 +123,13 @@
 		          	</div>
 					<div class="form-group">
 		            	<label class="col-lg-3 control-label">Home Town</label>
-			            <div class="col-md-8">
+			            <div class="col-lg-8">
 			              	<input class="form-control" value="Perak" type="text">
 			            </div>
 		          	</div>
 					<div class="form-group">
 			            <label class="col-lg-3 control-label">Current City</label>
-			            <div class="col-md-8">
+			            <div class="col-lg-8">
 			              	<input class="form-control" value="Ipoh" type="text">
 			            </div>
 		          	</div>
