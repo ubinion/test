@@ -1,5 +1,11 @@
 @extends('layouts.level-two-no-m-search-bar')
 
+{{-- this is to include the mobile search bar
+@section('header-m-search-bar')
+	@include('includes.header-m-search-bar')
+@overwrite
+--}}
+
 @section('content')
 	<h1 class="text-center">The Crew</h1><br/>
 	<div class="row">
