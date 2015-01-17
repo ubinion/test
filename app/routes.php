@@ -5,6 +5,8 @@ Route::get('login/fb',array('as'=>'fb_login', 'uses'=>'LoginFacebookController@l
 
 Route::get('login/fb/callback',array('as'=>'fb_callback', 'uses'=>'LoginFacebookController@callback'));
 
+Route::get('/about/about',array('as'=>'about-page', 'uses'=>'AboutPageController@getAboutPage'));
+
 /*
 |	Authenticated group
 */
