@@ -122,32 +122,32 @@
 			            </div>
 		          	</div>
 					<div class="form-group">
-		            	<label class="col-md-3 control-label">Home Town</label>
+		            	<label class="col-lg-3 control-label">Home Town</label>
 			            <div class="col-md-8">
 			              	<input class="form-control" value="Perak" type="text">
 			            </div>
 		          	</div>
 					<div class="form-group">
-			            <label class="col-md-3 control-label">Current City</label>
+			            <label class="col-lg-3 control-label">Current City</label>
 			            <div class="col-md-8">
 			              	<input class="form-control" value="Ipoh" type="text">
 			            </div>
 		          	</div>
 			         <div class="form-group">
-			            <label class="col-md-3 control-label">Prev Work Company</label>
-			            <div class="col-md-8">
+			            <label class="col-lg-3 control-label">Prev Work Company</label>
+			            <div class="col-lg-8">
 			              	<input class="form-control" value="SEGI College" type="text">
 			            </div>
 			        </div>
  					<div class="form-group">
-		            	<label class="col-md-3 control-label">Job Title</label>
-			            <div class="col-md-8">
+		            	<label class="col-lg-3 control-label">Job Title</label>
+			            <div class="col-lg-8">
 			              	<input class="form-control" value="Senior Lecturer" type="text">
 			            </div>
 		          </div>			        		          			          			          	
 			        <div class="form-group">
-			            <label class="col-md-3 control-label"></label>
-			            <div class="col-md-8 account-btn">
+			            <label class="col-lg-3 control-label"></label>
+			            <div class="col-lg-8 account-btn">
 			            	<input class="btn btn-success" value="Save Changes" type="button">
 			            	<input class="btn btn-default" value="Cancel" type="reset">
 			            </div>
