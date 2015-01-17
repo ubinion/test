@@ -147,7 +147,7 @@
 		          </div>			        		          			          			          	
 			        <div class="form-group">
 			            <label class="col-md-3 control-label"></label>
-			            <div class="col-md-8">
+			            <div class="col-md-8 account-btn">
 			            	<input class="btn btn-success" value="Save Changes" type="button">
 			            	<input class="btn btn-default" value="Cancel" type="reset">
 			            </div>

@@ -67,7 +67,7 @@
 				<div class="media user-post">
 				  	<a class="media-left media-middle" href="#">
 				  		<div class="panel-heading">
-				    		<img class="img-circle" src="../public/img/anonymous-icon/anonymous-2.jpg" alt="anonymous" />
+				    		<img class="img-circle" src="../public/img/anonymous-icon/anonymous-2.jpg" alt="anonymous" width="46px" height="46px"/>
 				  		</div>
 				  	</a>
 					<div class="media-body">
@@ -102,7 +102,7 @@
 				<div class="media user-post">
 				  	<a class="media-left media-middle" href="#">
 					  	<div class="panel-heading">
-					    	<img class="img-circle" src="../public/img/anonymous-icon/anonymous-3.jpg" alt="anonymous" />
+					    	<img class="img-circle" src="../public/img/anonymous-icon/anonymous-3.jpg" alt="anonymous" width="46px" height="46px"/>
 					  	</div>
 				  	</a>
 				  <div class="media-body">
@@ -137,7 +137,7 @@
 				<div class="media user-post">
 				  	<a class="media-left media-middle" href="#">
 					  	<div class="panel-heading">
-					    	<img class="img-circle" src="../public/img/anonymous-icon/anonymous-4.jpg" alt="anonymous" />
+					    	<img class="img-circle" src="../public/img/anonymous-icon/anonymous-4.jpg" alt="anonymous" width="46px" height="46px"/>
 					  	</div>
 				  	</a>
 				  <div class="media-body">
@@ -156,7 +156,7 @@
 	                    <li class="list-group-item js-input-comment">
 	                        <div class="row">
 	                            <div class="col-xs-2 col-md-1">
-	                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" width="25px" height="25px"/></div>
+	                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="anonymous" width="25px" height="25px"/></div>
 	                            <div class="col-xs-10 col-md-11">
 	                                <div class="comment-text">
 	                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh

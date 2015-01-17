@@ -7,3 +7,4 @@
 <script src="../js/contact-modal.js"></script>
 <script src="../js/search-option.js"></script>
 <script src="../js/responsive.header.js"></script>
+<script src="../js/comment-murmur.js"></script>

@@ -9,4 +9,4 @@
 <link rel="shortcut icon" href="../favicon.png">
 <link rel="stylesheet" type="text/css" href="../css/ubinion_core.min.css"> 
 <link rel="stylesheet" type="text/css" href="../style.css" />	
-<link rel="stylesheet" type="text/css" href="../js/plugin/bootstrapvalidator/dist/css/bootstrapValidator.min.css" />	
+<!--link rel="stylesheet" type="text/css" href="../js/plugin/bootstrapvalidator/dist/css/bootstrapValidator.min.css" /-->	

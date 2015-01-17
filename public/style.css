@@ -267,8 +267,7 @@ legend{
     margin-right: 0;
     margin-left: 0;
     border: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+
 }
 
 /*Search bar*/
@@ -402,6 +401,14 @@ legend{
     display: block;
     }
 
+@media(max-width:767px) {
+    .avatar {
+      margin-top: 30px; 
+    }
+    .account-btn{
+      margin-top: -20px;
+    }
+}
 /*-------------------New post confssion----------------------------*/
 .post-confession-bar {
     border-radius: 3px;
