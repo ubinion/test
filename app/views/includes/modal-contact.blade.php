@@ -10,15 +10,15 @@
 	          	<form role="form" id="contact-form">
 		          	<div class="form-group">
 		           		<label for="recipient-email" class="control-label">Email</label><!-- Sender Email-->
-		            	<input type="text" class="form-control" placeholder="user@email.com" name="cf_email" id="recipient-email">
+		            	<input type="email" class="form-control" placeholder="user@email.com" name="cf_email" id="recipient-email" required/>
 		          	</div>
 		          	<div class="form-group">
 		            	<label for="recipient-subject" class="control-label">Subject</label><!-- Sender Subject-->
-		            	<input type="subject" class="form-control" name="cf_subject" id="recipient-subject">
+		            	<input type="subject" type="text" class="form-control" name="cf_subject" id="recipient-subject" required/>
 		          	</div>
 		          	<div class="form-group">
 		            	<label for="message-text" class="control-label">Message:</label><!-- Sender Message-->
-		            	<textarea class="form-control" rows="4" name="cf_message" id="message-text"></textarea>
+		            	<textarea class="form-control" rows="4" name="cf_message" id="message-text" required/></textarea>
 						<span class="help-block contact-form-status"></span>
 		         	</div>
 		           	<div class="modal-footer">	
