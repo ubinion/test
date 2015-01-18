@@ -141,10 +141,10 @@ body {
   	width: 98%;
   }
 
-  .navbar-inverse,
-  .navbar-nav, 
-  .open,
-  .dropdown-menu,
+  .navbar-inverse>
+  .navbar-nav> 
+  .open>
+  .dropdown-menu>
   .divider { background-color: #CCCCCC; }    
 }
 
@@ -267,8 +267,7 @@ legend {
 .desktop-search-bar{ width:400px; }
 
 @media (max-width:767px) {
-  .navbar,
-  .navbar-form {
+  .navbar> .navbar-form {
       width: auto;
       padding-left:0;
       padding-right:0;
@@ -276,11 +275,10 @@ legend {
 }
 
 @media(min-width:768px) {
-  .navbar,
-  .navbar-form { width: 380px; }
+  .navbar> .navbar-form { width: 380px; }
 }
 
-.navbar .navbar-form {
+.navbar> .navbar-form {
   padding-top: 0;
   padding-bottom: 0;
   margin-right: 0;
@@ -332,9 +330,9 @@ legend {
 
 /* Search Result styles
 -------------------------------------------------- */
-#paper-result-area{ margin-top: 10px; }
+#paper-result-area { margin-top: 10px; }
 
-.search-subject>.search-subject-heading{
+.search-subject>.search-subject-heading {
   background-color: #1a202c;
 	border-color: #BFBFBF;
 }
@@ -425,7 +423,7 @@ legend {
 
 @media(max-width:767px) {
   .avatar { margin-top: 30px; }
-  .account-btn{margin-top: -20px;}
+  .account-btn{ margin-top: -20px; }
 }
 /*-------------------New post confession----------------------------*/
 .post-confession-bar {
@@ -529,11 +527,11 @@ html {
 }
  /*--------------------------------------------------  
 About Page glyphicon styles*/
-.name{
+.name {
 	font-weight: bold;
 }
 
-.position{
+.position {
 	color: #A8A8A8;
 }
 
