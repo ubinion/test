@@ -19,7 +19,7 @@ class CreateUserTable extends Migration {
 			$table->string('last_name',200);
 			$table->string('password');
 			$table->string('password_temp');
-			$table->bigInteger('uid_fb');
+			$table->bigInteger('uid_fb')->nullable();
 			$table->string('birthday');
 			$table->string('photo_url');
 			$table->string('fb_token');
