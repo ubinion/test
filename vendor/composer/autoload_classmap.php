@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AboutPageController' => $baseDir . '/app/controllers/AboutPageController.php',
+    'AccountController' => $baseDir . '/app/controllers/AccountController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Boris\\Boris' => $vendorDir . '/d11wtq/boris/lib/Boris/Boris.php',
     'Boris\\CLIOptionsHandler' => $vendorDir . '/d11wtq/boris/lib/Boris/CLIOptionsHandler.php',
@@ -28,6 +30,9 @@ return array(
     'ClassPreloader\\Parser\\DirVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/DirVisitor.php',
     'ClassPreloader\\Parser\\FileVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/FileVisitor.php',
     'ClassPreloader\\Parser\\NodeTraverser' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/NodeTraverser.php',
+    'CreateCollegeTable' => $baseDir . '/app/database/migrations/2015_01_20_211919_create_college_table.php',
+    'CreateLecturerTable' => $baseDir . '/app/database/migrations/2015_01_20_212030_create_lecturer_table.php',
+    'CreateSchoolTable' => $baseDir . '/app/database/migrations/2015_01_20_211955_create_school_table.php',
     'CreateUserTable' => $baseDir . '/app/database/migrations/2015_01_06_153701_create_user_table.php',
     'Crypt_AES' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
     'Crypt_Base' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Base.php',
@@ -699,6 +704,8 @@ return array(
     'Illuminate\\Workbench\\PackageCreator' => $vendorDir . '/laravel/framework/src/Illuminate/Workbench/PackageCreator.php',
     'Illuminate\\Workbench\\Starter' => $vendorDir . '/laravel/framework/src/Illuminate/Workbench/Starter.php',
     'Illuminate\\Workbench\\WorkbenchServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/Workbench/WorkbenchServiceProvider.php',
+    'InsertCollegeRecords' => $baseDir . '/app/database/migrations/2015_01_20_214709_insert_college_records.php',
+    'InsertSchoolRecords' => $baseDir . '/app/database/migrations/2015_01_20_214742_insert_school_records.php',
     'Jeremeamia\\SuperClosure\\ClosureLocation' => $vendorDir . '/jeremeamia/SuperClosure/src/Jeremeamia/SuperClosure/ClosureLocation.php',
     'Jeremeamia\\SuperClosure\\ClosureParser' => $vendorDir . '/jeremeamia/SuperClosure/src/Jeremeamia/SuperClosure/ClosureParser.php',
     'Jeremeamia\\SuperClosure\\SerializableClosure' => $vendorDir . '/jeremeamia/SuperClosure/src/Jeremeamia/SuperClosure/SerializableClosure.php',
@@ -1257,6 +1264,7 @@ return array(
     'Predis\\Session\\SessionHandler' => $vendorDir . '/predis/predis/lib/Predis/Session/SessionHandler.php',
     'Predis\\Transaction\\AbortedMultiExecException' => $vendorDir . '/predis/predis/lib/Predis/Transaction/AbortedMultiExecException.php',
     'Predis\\Transaction\\MultiExecContext' => $vendorDir . '/predis/predis/lib/Predis/Transaction/MultiExecContext.php',
+    'ProfileController' => $baseDir . '/app/controllers/ProfileController.php',
     'Psr\\Log\\AbstractLogger' => $vendorDir . '/psr/log/Psr/Log/AbstractLogger.php',
     'Psr\\Log\\InvalidArgumentException' => $vendorDir . '/psr/log/Psr/Log/InvalidArgumentException.php',
     'Psr\\Log\\LogLevel' => $vendorDir . '/psr/log/Psr/Log/LogLevel.php',
