@@ -20,12 +20,13 @@ class CreateUserTable extends Migration {
 			$table->string('password');
 			$table->string('password_temp');
 			$table->bigInteger('uid_fb')->nullable();
-			$table->string('birthday');
-			$table->string('photo_url');
-			$table->string('fb_token');
-			$table->boolean('active');
-			$table->string('activate_code',60);
-			$table->string('remember_token');
+			$table->string('birthday')->nullable();
+			$table->string('photo_url')->nullable();
+			$table->string('fb_token')->nullable();
+			$table->boolean('active')->nullable();
+			$table->string('activate_code',60)->nullable();
+			$table->string('remember_token')->nullable();
+			$table->boolean('fb_login')->default(false);
 			$table->timestamps();
 
 		});

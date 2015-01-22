@@ -286,7 +286,7 @@ class AccountController extends BaseController {
 			$uid_fb				=	Input::get('uid_fb');
 			$first_name			=	Input::get('first_name');
 			$last_name			=	Input::get('last_name');
-			$password	=	Input::get('password');
+			$password			=	Input::get('password');
 
 			//generate activation code
 			$code		=	str_random(60);

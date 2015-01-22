@@ -26,7 +26,7 @@
 
 					{{-- Display sign up form--}}
 					<div class="text-center"> 				     		      
-	          			<a href="#" class="btn btn-primary">Sign Up by Facebook</a>
+	          			<a href="{{ url('/login/fb') }}" class="btn btn-primary">Sign Up by Facebook</a>
 	          		</div>					
 					<div class="login-or">
 				        <hr class="hr-or">
