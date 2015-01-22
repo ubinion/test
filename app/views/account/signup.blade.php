@@ -42,6 +42,19 @@
 	                            <input class="form-control" type="text" name="last_name" {{ Input::old('last_name') ? 'value="' .e(Input::old('last_name')). '"':'' }} placeholder="Last Name" required/>                        
 	                        </div>
 	                    </div>
+	                    @if($errors->has('first_name'))
+	                    	<div class="alert alert-danger" role="alert">
+							  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  	<span class="sr-only">Error:</span> 
+							  	{{$errors->first('first_name')}}
+							</div>							  		                    
+						@elseif($errors->has('last_name'))
+	                    	<div class="alert alert-danger" role="alert">
+							  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  	<span class="sr-only">Error:</span> 
+							  	{{$errors->first('last_name')}}
+							</div>							  		                    
+						@endif
 	                    <label for="inputUsernameEmail">Email</label>
 	                    <input class="form-control" type="email" name="email" {{ Input::old('email') ? 'value="' .e(Input::old('email')). '"':'' }} placeholder="Your Email" required/>
 	                    @if($errors->has('email'))
@@ -52,14 +65,21 @@
 							</div>							  		                    
 						@endif
 	                   	<label for="inputPassword">Password</label>
-	                    <input type="password" name="password" value="" class="form-control " placeholder="Password" pattern="^([a-zA-Z0-9_-]){6,20}$" title="Password must be 6-20 characters (alphabet, number or underscore only)" required/>
+	                    <input type="password" name="password" value="" class="form-control " placeholder="Password" required/>
+	                    @if($errors->has('password'))
+	                    	<div class="alert alert-danger" role="alert">
+							  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  	<span class="sr-only">Error:</span>
+							  	{{$errors->first('password')}}
+							</div>
+						@endif
 
-	                    <input type="password" name="confirm_password" value="" class="form-control" placeholder="Confirm Password" pattern="^([a-zA-Z0-9_-]){6,20}$" title="Password must be 6-20 characters (alphabet, number or underscore only)" required/>
+	                    <input type="password" name="confirm_password" value="" class="form-control" placeholder="Confirm Password" required/>
 	                    @if($errors->has('confirm_password'))
 	                    	<div class="alert alert-danger" role="alert">
 							  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 							  	<span class="sr-only">Error:</span>
-							  	The password do not match
+							  	{{$errors->first('confirm_password')}}
 							</div>
 						@endif
 

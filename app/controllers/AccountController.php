@@ -167,12 +167,21 @@ class AccountController extends BaseController {
 	*/
 	public function postChgPw(){
 
+		//set the message for each Validator
+		$message=array('old_password.required'=>'The old password field cannot be empty', 
+						'new_password.required'=>'The new password field cannot be empty',
+						'new_password.between'=>'The password length is between 6-20 characters',
+						'new_password.alpha_num'=>'The password can only use number(0-9) and characters(A-Z, a-z)',
+						'new_password_2.same'=>'The new password field not same'
+						);
+
 		//set validator, password 2 must same with password 1
 		$validator = Validator::make(Input::all(),
 			array(
+				'old_password' =>'required',
+				'new_password' =>'required|between:6,20|alpha_num',
 				'new_password_2' =>'same:new_password'
-
-			)
+			),$message
 		);
 
 		//if violate validator
@@ -241,12 +250,27 @@ class AccountController extends BaseController {
 	*/
 	public function postSignUp(){
 
+		//set the message for each Validator
+		$message=array(
+						'first_name.required'		=> 'First Name field cannot be blank',
+						'last_name.required'		=> 'Last Name field cannot be blank',
+						'email.unique'				=>'The email address has been used. Use another email.', 
+						'email.required'			=> 'Email field cannot be blank',
+						'password.required'			=>'The password field cannot be empty',
+						'password.between'			=>'The password length is between 6-20 characters',
+						'password.alpha_num'		=>'The password can only use number(0-9) and characters(A-Z, a-z)',
+						'confirm_password.same'		=>'Both password mismatch. Try again'
+						);
+
 		//set the validator
 		$validator = Validator::make(Input::all(),
 			array(
-				'email'				=>'unique:users',
+				'first_name'		=> 'required',
+				'last_name'			=> 'required',
+				'email'				=>'unique:users|required',
+				'password' 			=>'required|between:6,20|alpha_num',
 				'confirm_password'	=>'same:password'
-			)
+			),$message
 		);
 
 		//if violate the validator
