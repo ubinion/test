@@ -67,24 +67,9 @@ class LoginFacebookController extends BaseController {
 		$user->fb_token=$this->fb->getToken();
 		$user->save();
 
-		//Auth::login($user);
+		Auth::login($user);
 
-		//return Redirect::to('/')->with('message','Logged In');
-
-		$remember = false; 
-
-		//auth user to login
-		$auth =	Auth::attempt(array(
-			'fb_uid'		=>	$user_fb->getProperty('id'),
-			'fb_login'	=>	1,
-			'active' 	=>	1
-		), $remember);
-
-		if($auth){
-			//redirect to home page
-			return Redirect::intended('/')
-				->with('global','<p class="text-success">Logged In</p>');
-		}
+		return Redirect::to('/')->with('message','Logged In');
 	}
 	
 
