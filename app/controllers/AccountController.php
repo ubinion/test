@@ -62,7 +62,7 @@ class AccountController extends BaseController {
 	*/
 	public function getForgotPw(){
 		//create forgot password view
-		return View::make('account.forgot_password');
+		return View::make('account.forgot-password');
 	}
 
 	/*
@@ -167,12 +167,21 @@ class AccountController extends BaseController {
 	*/
 	public function postChgPw(){
 
+		//set the message for each Validator
+		$message=array('old_password.required'=>'The old password field cannot be empty', 
+						'new_password.required'=>'The new password field cannot be empty',
+						'new_password.between'=>'The password length is between 6-20 characters',
+						'new_password.alpha_num'=>'The password can only use number(0-9) and characters(A-Z, a-z)',
+						'new_password_2.same'=>'The new password field not same'
+						);
+
 		//set validator, password 2 must same with password 1
 		$validator = Validator::make(Input::all(),
 			array(
+				'old_password' =>'required',
+				'new_password' =>'required|between:6,20|alpha_num',
 				'new_password_2' =>'same:new_password'
-
-			)
+			),$message
 		);
 
 		//if violate validator
@@ -241,12 +250,27 @@ class AccountController extends BaseController {
 	*/
 	public function postSignUp(){
 
+		//set the message for each Validator
+		$message=array(
+						'first_name.required'		=> 'First Name field cannot be blank',
+						'last_name.required'		=> 'Last Name field cannot be blank',
+						'email.unique'				=>'The email address has been used. Use another email.', 
+						'email.required'			=> 'Email field cannot be blank',
+						'password.required'			=>'The password field cannot be empty',
+						'password.between'			=>'The password length is between 6-20 characters',
+						'password.alpha_num'		=>'The password can only use number(0-9) and characters(A-Z, a-z)',
+						'confirm_password.same'		=>'Both password mismatch. Try again'
+						);
+
 		//set the validator
 		$validator = Validator::make(Input::all(),
 			array(
-				'email'				=>'unique:users',
+				'first_name'		=> 'required',
+				'last_name'			=> 'required',
+				'email'				=>'unique:users|required',
+				'password' 			=>'required|between:6,20|alpha_num',
 				'confirm_password'	=>'same:password'
-			)
+			),$message
 		);
 
 		//if violate the validator
@@ -262,7 +286,7 @@ class AccountController extends BaseController {
 			$uid_fb				=	Input::get('uid_fb');
 			$first_name			=	Input::get('first_name');
 			$last_name			=	Input::get('last_name');
-			$password	=	Input::get('password');
+			$password			=	Input::get('password');
 
 			//generate activation code
 			$code		=	str_random(60);
@@ -292,6 +316,101 @@ class AccountController extends BaseController {
 					->with('success_signup_msg','<div class="alert alert-success" role="alert">
 													<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
 													Verification email has been sent to <strong>'.$user->email.'</strong> <br/>Please check your inbox.
+												</div>');
+			}
+		}
+	}
+
+	/*
+	|	Facebook Sign Up Page (get)
+	*/
+	public function getFbSignUp(){
+		//make the sign up view
+		return View::make('account.fb-signup');
+	}
+	
+	/*
+	|	Facebook Sign Up Page (post)
+	*/
+	public function postFbSignUp(){
+
+		//set the message for each Validator
+		$message=array(
+						'first_name.required'		=> 'First Name field cannot be blank',
+						'last_name.required'		=> 'Last Name field cannot be blank',
+						'email.unique'				=>'The email address has been used. Use another email.', 
+						'email.required'			=> 'Email field cannot be blank',
+						'password.required'			=>'The password field cannot be empty',
+						'password.between'			=>'The password length is between 6-20 characters',
+						'password.alpha_num'		=>'The password can only use number(0-9) and characters(A-Z, a-z)',
+						'confirm_password.same'		=>'Both password mismatch. Try again'
+						);
+
+		//set the validator
+		$validator = Validator::make(Input::all(),
+			array(
+				'first_name'		=> 'required',
+				'last_name'			=> 'required',
+				'email'				=>'unique:users|required',
+				'password' 			=>'required|between:6,20|alpha_num',
+				'confirm_password'	=>'same:password'
+			),$message
+		);
+
+		//if violate the validator
+		if ($validator->fails()){
+			//
+			return Redirect::route('account-signup')
+					->withErrors($validator)
+					->withInput();
+		}
+		else{
+			//get data from input
+			$email				=	Str::lower(Input::get('email'));
+			$fb_uid				=	Input::get('fb_uid');
+			$first_name			=	Input::get('first_name');
+			$last_name			=	Input::get('last_name');
+			$password			=	Input::get('password');
+			$gender				=	Input::get('gender');
+			$birthday			=	Input::get('birthday');
+			$uni_name			=	Input::get('uni_name');
+			$uni_course			=	Input::get('uni_course');
+			$city_current		=	Input::get('city_current');
+			$city_hometown		=	Input::get('city_hometown');
+			$work_company		=	Input::get('work_company');
+			$work_pos			=	Input::get('work_pos');
+
+			//insert new user to db
+			$user 	=	User::create(array(
+				'email'			=>	$email,
+				'fb_uid'		=>	$fb_uid,
+				'first_name'	=>	$first_name,
+				'last_name'		=>	$last_name,
+				'password'		=>	Hash::make($password),
+				
+				'gender'		=>	$gender,
+				'birthday'		=>	$birthday,
+				'uni_name'		=>	$uni_name,
+				'uni_course'	=>	$uni_course,
+				'city_current'	=>	$city_current,
+				'city_hometown'	=>	$city_hometown,
+				'work_company'	=>	$work_company,
+				'work_pos'		=>	$work_pos,
+
+				'photo_url'		=>	'http://graph.facebook.com/'.$fb_uid.'/picture?type=large',
+				'active'		=>	1,
+				'fb_login'		=>	1
+
+			));
+
+			//if user inserted
+			if($user){
+
+				//back to sign up view with success msg
+				return Redirect::route('account-signup')
+					->with('success_signup_msg','<div class="alert alert-success" role="alert">
+													<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+													Congrats you can now sign in with your facebook.
 												</div>');
 			}
 		}

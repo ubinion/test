@@ -8,7 +8,7 @@
     		<legend class="login-title">Login</legend>
     	</div>
     	@if(! Session::has('account-active-msg'))
-	    	<a href="#" class="btn btn-primary btn-block">Login In with Facebook</a>
+	    	<a href="{{ url('/login/fb') }}" class="btn btn-primary btn-block">Login In with Facebook</a>
 		    <div class="login-or">
 		        <hr class="hr-or">
 		        <span class="span-or">or</span>

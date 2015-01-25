@@ -15,8 +15,6 @@
 			FacebookSession::setDefaultApplication(Config::get('facebook.app_id'), Config::get('facebook.app_secret'));
 
 			$this->helper = new FacebookRedirectLoginHelper(url('login/fb/callback'));
-			
-
 		}
 
 		public function getUrlLogin(){

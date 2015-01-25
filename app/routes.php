@@ -59,7 +59,17 @@ Route::group(array('before'=>'guest'),function(){
 		*/
 		Route::post('/account/signup',array('as'=>'account-signup-post','uses'=>'AccountController@postSignUp'));
 
+		/*
+		|	facebook signup account (POST)
+		*/
+		Route::post('/account/fb-signup',array('as'=>'account-fb-signup-post','uses'=>'AccountController@postFbSignUp'));
+
 	});
+
+	/*
+	|	facebook signup account (GET)
+	*/
+	Route::get('/account/fb-signup',array('as'=>'account-fb-signup','uses'=>'AccountController@getFbSignUp'));
 
 
 	/*

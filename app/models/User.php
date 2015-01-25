@@ -7,8 +7,26 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	protected $fillable = array('email','username','password','first_name', 'last_name', 'uid_fb',
-								'password_temp','activate_code','active');
+	protected $fillable = array(
+								'email',
+								'password',
+								'first_name',
+								'last_name',
+								'password_temp',
+								'active',
+								'activate_code',
+								'fb_login',
+								'fb_uid',
+								'gender',
+								'birthday',
+								'uni_name',
+								'uni_course',
+								'city_current',
+								'city_hometown',
+								'work_company',
+								'work_pos',
+								'photo_url',
+								'fb_token');
 	use UserTrait, RemindableTrait;
 
 	/**

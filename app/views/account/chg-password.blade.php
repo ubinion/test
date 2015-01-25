@@ -13,23 +13,35 @@
 	          	<label for="old_password">Old password</label>
 	          	<input id="old_password" class="form-control" type="password" name="old_password" required>
 	        </div>
-		    @if($errors->has('new_password_2'))
+	        @if($errors->has('old_password'))
 	        	<div class="alert alert-danger" role="alert">
 				  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 				  	<span class="sr-only">Error:</span>
-				  	The password do not match
+				  	{{$errors->first('old_password')}}
 				</div>
 			@endif
 	        <div class="form-group">
 	          	<label for="new_password">New password</label>
-	          	<input id="new_password" class="form-control" type="password" name="new_password" pattern="^([a-zA-Z0-9_-]){6,20}$" title="Password must be 6-20 characters (alphabet, number or underscore only)" required>
+	          	<input id="new_password" class="form-control" type="password" name="new_password" required>
 	        </div>
-
+	        @if($errors->has('new_password'))
+	        	<div class="alert alert-danger" role="alert">
+				  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				  	<span class="sr-only">Error:</span>
+				  	{{$errors->first('new_password')}}
+				</div>
+			@endif
 	        <div class="form-group">
 	          	<label for="new_password_2">Retype your new password</label>
-	          	<input id="new_password_2" class="form-control" type="password" name="new_password_2" pattern="^([a-zA-Z0-9_-]){6,20}$" title="Password must be 6-20 characters (alphabet, number or underscore only)" required>
+	          	<input id="new_password_2" class="form-control" type="password" name="new_password_2" required>
 	        </div>
-
+	        @if($errors->has('new_password_2'))
+	        	<div class="alert alert-danger" role="alert">
+				  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				  	<span class="sr-only">Error:</span>
+				  	{{$errors->first('new_password_2')}}
+				</div>
+			@endif
       
 	        {{ Form::token() }}
 
