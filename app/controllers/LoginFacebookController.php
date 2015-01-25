@@ -67,8 +67,6 @@ class LoginFacebookController extends BaseController {
 		$user->fb_token=$this->fb->getToken();
 		$user->save();
 
-		die($user->fb_token);
-
 		Auth::login($user);
 
 		return Redirect::to('/')->with('message','Logged In');
