@@ -14,7 +14,7 @@ class LoginFacebookController extends BaseController {
 	}
 
 	public function callback(){
-		
+
 		if(!$this->fb->generateSessionFromRedirect()){
 			//if no session
 
@@ -66,6 +66,8 @@ class LoginFacebookController extends BaseController {
 		//user will reach here no matter update/create/found uid
 		$user->fb_token=$this->fb->getToken();
 		$user->save();
+
+		die($user->fb_token);
 
 		Auth::login($user);
 
