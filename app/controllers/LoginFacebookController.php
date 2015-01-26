@@ -23,49 +23,60 @@ class LoginFacebookController extends BaseController {
 
 		}
 
-		$user_fb= $this->fb->getGraph();
+		$user_fb= $this->fb->getGraphArray();
 
 		if (empty($user_fb)){
 			die('Fail to fetch data from fb');
 			return Redirect::to('/')->with ('message','Fail to fetch data from Facebook.');
 		}
 
-		$user = User::whereFbUid($user_fb->getProperty('id'))->first();
+		$user = User::whereFbUid($user_fb['id'])->first();
 
 		//if user not found by uid
 		if (empty($user)){
 
 			//try find by email
-			$user = User::whereEmail($user_fb->getProperty('email'))->first();
+			$user = User::whereEmail($user_fb['email'])->first();
 			//if user found by email
 			if ($user){
 				echo 'Facebook Email found... <br>';
 				//update facebook info to db
-				$user->fb_uid			= $user_fb->getProperty('id');
+				$user->fb_uid				= $user_fb['id'];
 
-				if(empty($user->gender))
-					$user->gender 		= $user_fb->getProperty('gender');
+				if((empty($user->gender)) AND !empty($user_fb['gender'])) 
+					$user->gender 			= $user_fb['gender'];
 
 
-				if(empty($user->birthday))
-					$user->birthday=$user_fb->getProperty('birthday');
-					//$user->birthday=date(strtotime($user_fb->getProperty('birthday')));
+				if((empty($user->birthday)) AND !empty($user_fb['birthday']))
+					$user->birthday 		= $user_fb['birthday'];
+					//$user->birthday=date(strtotime($user_fb['birthday']));
 
-				if(empty($user->photo_url))
-				$user->photo_url='http://graph.facebook.com/'.$user_fb->getProperty('id').'/picture?type=large';
+				if(empty($user->photo_url)) 
+				$user->photo_url			='http://graph.facebook.com/'.$user_fb['id'].'/picture?type=large';
 
+				if(!empty($user_fb['education'])){
+
+					$totalSch=count($user_fb['education']);
+					$user->uni_name 			= $user_fb['education'][--$totalSch]->school->name;
+				}
+
+				if(!empty($user_fb['work'])){
+
+					$user->work_company 	= $user_fb['work'][0]->employer->name;
+					$user->work_pos			= $user_fb['work'][0]->position->name;
+				}			
 
 				if(($user->active)==0)
-				$user->active=1;
+				$user->active 				= 1;
 
 				if(($user->fb_login)==0)
-				$user->fb_login=1;
+				$user->fb_login				= 1;
 
-				if(empty($user->city_hometown))
-					$user->city_hometown 	= $user_fb->getProperty('hometown')->getProperty('name');
+				if((empty($user->city_hometown)) AND !empty($user_fb['hometown']->name))
+					$user->city_hometown 	= $user_fb['hometown']->name;
 
-				if(empty($user->city_current))
-					$user->city_current 	= $user_fb->getProperty('location')->getProperty('name');
+				if((empty($user->city_current)) AND !empty($user_fb['location']->name))
+					$user->city_current 	= $user_fb['location']->name;
 
 
 			}else{
