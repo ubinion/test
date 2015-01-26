@@ -24,7 +24,6 @@
 
 				@elseif(Session::has('user_fb'))
 					<?php $user_fb=Session::get('user_fb'); ?>
-					<pre>{{ var_dump($user_fb) }}</pre>
 
 					{{-- Display sign up form--}}
 					<form class="form" action="{{ URL::route('account-fb-signup-post')}}" method="post">
@@ -79,8 +78,8 @@
 						@endif
 
 						<input type="hidden" name="fb_uid" {{ $user_fb['id'] ? 'value="' .e($user_fb['id']). '"':'' }} />
-						<input type="hidden" name="gender" {{ $user_fb['gender'] ? 'value="' .e($user_fb['gender']). '"':'' }} />
-						<input type="hidden" name="birthday" {{ $user_fb['birthday'] ? 'value="' .e($user_fb['birthday']). '"':'' }} />
+						<input type="hidden" name="gender" {{ !empty($user_fb['gender']) ? 'value="' .e($user_fb['gender']). '"':'' }} />
+						<input type="hidden" name="birthday" {{ !empty($user_fb['birthday']) ? 'value="' .e($user_fb['birthday']). '"':'' }} />
 
 						<?php
 							if(!empty($user_fb['education'])){
@@ -104,10 +103,18 @@
 						<input type="hidden" name="uni_name" {{ $schName ? 'value="' .e($schName). '"':'' }} />
 						<input type="hidden" name="uni_college" value='' />
 						<input type="hidden" name="uni_course" value='' />
+						
+						@if(!empty($user_fb['location']))
 						<input type="hidden" name="city_current"  {{ $user_fb['location']->name ? 'value="' .e($user_fb['location']->name). '"':'' }}/>
+						@else
+						<input type="hidden" name="city_current" value""/>
+						@endif
+
+						@if(!empty($user_fb['hometown']))
 						<input type="hidden" name="city_hometown" {{ $user_fb['hometown']->name ? 'value="' .e($user_fb['hometown']->name). '"':'' }} />
-						<input type="hidden" name="work_company" {{$work_company ? 'value="' .e($work_company). '"':'' }} />
-						<input type="hidden" name="work_pos" {{ $work_pos ? 'value="' .e($work_pos). '"':'' }} />
+						@else
+						<input type="hidden" name="city_hometown" value""/>
+						@endif
 	
 	                    {{ Form::token() }}
 
