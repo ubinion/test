@@ -5,11 +5,9 @@ class HomeController extends BaseController {
 
 		$user=array();
 
-		if(Auth::check()){
+		if(Auth::check())
 			$user=Auth::user();
-		}
 
 		return View::make('home')->with('user',$user);
 	}
-
 }

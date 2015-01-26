@@ -18,6 +18,7 @@ class LoginFacebookController extends BaseController {
 		if(!$this->fb->generateSessionFromRedirect()){
 			//if no session
 
+			die('No session from Redirect');
 			return Redirect::to('/')->with("message","Failed, No Session From Redirect. Please Try again");
 
 		}
@@ -25,12 +26,11 @@ class LoginFacebookController extends BaseController {
 		$user_fb= $this->fb->getGraph();
 
 		if (empty($user_fb)){
-
+			die('Fail to fetch data from fb');
 			return Redirect::to('/')->with ('message','Fail to fetch data from Facebook.');
 		}
 
 		$user = User::whereFbUid($user_fb->getProperty('id'))->first();
-		echo 'Facebook Uid found... <br>';
 
 		//if user not found by uid
 		if (empty($user)){
@@ -39,7 +39,7 @@ class LoginFacebookController extends BaseController {
 			$user = User::whereEmail($user_fb->getProperty('email'))->first();
 			//if user found by email
 			if ($user){
-
+				echo 'Facebook Email found... <br>';
 				//update facebook info to db
 				$user->fb_uid	= $user_fb->getProperty('id');
 
@@ -59,18 +59,19 @@ class LoginFacebookController extends BaseController {
 					->with('user_fb',$user_fb->asArray());
 			}
 
-			//save the user
-			$user->save();
 		}
-
+		
 		//user will reach here no matter update/create/found uid
-		$user->fb_token=$this->fb->getToken();
+		$user->fb_token = $this->fb->getToken();
+		
+		//save to the database
 		$user->save();
-
+		
+		//attempt to login 
 		Auth::login($user);
 
-		return Redirect::to('/')->with('message','Logged In');
-	}
-	
+		//redirect to landing page
+		return Redirect::intended('/')->with('global','<p class="text-success">Logged In</p>');
 
+	}
 }
