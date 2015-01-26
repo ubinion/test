@@ -19,8 +19,14 @@ Route::group(array('before'=>'auth'),function(){
 
 		/*
 	|	Change password (POST)
-	*/
-	Route::post('/account/change-password',array('as'=>'account-chg-pw-post', 'uses'=>'AccountController@postChgPw'));
+		*/
+		Route::post('/account/change-password',array('as'=>'account-chg-pw-post', 'uses'=>'AccountController@postChgPw'));
+
+
+		/*
+	|	Edit Profile (POST)
+		*/
+		Route::post('/user/{id}',array('as'=>'profile-edit-post', 'uses'=>'ProfileController@postEditProfile'));
 
 	});
 	/*
@@ -37,8 +43,8 @@ Route::group(array('before'=>'auth'),function(){
 	|	Edit profile(GET)
 	*/
 	Route::get('user/{id}',array(
-		'as' 	=> 'profile-user',
-		'uses'	=> 'ProfileController@user'
+		'as' 	=> 'profile-edit',
+		'uses'	=> 'ProfileController@getEditProfile'
 	));	
 
 });

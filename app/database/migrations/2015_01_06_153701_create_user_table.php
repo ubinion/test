@@ -30,6 +30,8 @@ class CreateUserTable extends Migration {
 
 			$table->string('uni_name')->nullable();
 			$table->string('uni_course')->nullable();
+			$table->integer('uni_sem')->nullable();
+
 			$table->string('city_current')->nullable();
 			$table->string('city_hometown')->nullable();
 			$table->string('work_company')->nullable();

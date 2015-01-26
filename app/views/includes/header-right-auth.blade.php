@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <p class="text-center">
-								<img src="http://placehold.it/120x120" alt="user" class="img-circle" width="90px" height="90px"/>
+								<img src="{{ $user->photo_url ? $user->photo_url : 'http://placehold.it/120x120'}}" alt="user" class="img-circle" width="90px" height="90px"/>
                                 </p>
                             </div>
                             <div class="col-lg-8">
@@ -31,7 +31,7 @@
 
                                 <p class="text-left text-center">
                                     <legend id="divide">
-                                    	<a href="{{ URL::route('profile-user',Auth::id())}}" class="btn btn-primary btn-block btn-sm">Edit Profile</a>
+                                    	<a href="{{ URL::route('profile-edit',Auth::id())}}" class="btn btn-primary btn-block btn-sm">Edit Profile</a>
                                     </legend>
                                 </p>
                             </div>

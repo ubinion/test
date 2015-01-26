@@ -83,7 +83,7 @@ class LoginFacebookController extends BaseController {
 
 				//redirect to facebook sign up page
 				return Redirect::route('account-fb-signup')
-					->with('user_fb',$user_fb->asArray());
+					->with('user_fb',$user_fb);
 			}
 
 		}
