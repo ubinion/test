@@ -41,15 +41,31 @@ class LoginFacebookController extends BaseController {
 			if ($user){
 				echo 'Facebook Email found... <br>';
 				//update facebook info to db
-				$user->fb_uid	= $user_fb->getProperty('id');
+				$user->fb_uid			= $user_fb->getProperty('id');
+
+				if(empty($user->gender))
+					$user->gender 		= $user_fb->getProperty('gender');
+
 
 				if(empty($user->birthday))
 					$user->birthday=$user_fb->getProperty('birthday');
 					//$user->birthday=date(strtotime($user_fb->getProperty('birthday')));
 
+				if(empty($user->photo_url))
 				$user->photo_url='http://graph.facebook.com/'.$user_fb->getProperty('id').'/picture?type=large';
+
+
+				if(($user->active)==0)
 				$user->active=1;
+
+				if(($user->fb_login)==0)
 				$user->fb_login=1;
+
+				if(empty($user->city_hometown))
+					$user->city_hometown 	= $user_fb->getProperty('hometown')->getProperty('name');
+
+				if(empty($user->city_current))
+					$user->city_current 	= $user_fb->getProperty('location')->getProperty('name');
 
 
 			}else{
