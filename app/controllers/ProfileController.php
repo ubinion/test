@@ -65,7 +65,7 @@ class ProfileController extends BaseController {
 			if ($user->save()){
 
 				//return with success msg after saved to db
-				return Redirect::route('profile-edit')
+				return Redirect::route('profile-edit',$user->id)
 						->with('global','<div class="alert alert-info" role="alert">
 											<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
 											Successfully updated.
@@ -80,7 +80,7 @@ class ProfileController extends BaseController {
 		return Redirect::route('profile-edit')->with('global','<div class="alert alert-danger" role="alert">
 																  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 																  	<span class="sr-only">Error:</span>
-																  	We could not change your password. Try again
+																  	We facing problem to update your profile now. Please Try again later
 																</div>');
 	}
 

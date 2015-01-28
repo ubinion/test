@@ -8,12 +8,12 @@
 		        <div class="text-center">
 		        	<img src="{{ $user->photo_url ? $user->photo_url : '../img/team/wanted-1.jpg'}}" class="avatar img-circle" alt="avatar" width="120px" height="120px">
 		        </div>
-		        <div class="text-center">
+		        <!--<div class="text-center">
 				    <span class="btn btn-default btn-file">
 				    	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Browse<input type="file">    
 				    </span> 
 				    <h6>Update Profile Picture</h6>
-			   	</div>
+			   	</div>-->
 		    </div>
 		      
 		    <!-- edit form column -->
@@ -25,7 +25,7 @@
 		        </div-->
 		        <legend>Personal info</legend>
 		        
-		        <form class="form-horizontal" role="form" action="{{ URL::route('profile-edit-post')}}">
+		        <form class="form-horizontal" role="form" method="post" action="{{ URL::route('profile-edit-post')}}">
 			        <div class="form-group">
 			            <label class="col-lg-3 control-label">First name</label>
 			            <div class="col-lg-8">
@@ -62,14 +62,14 @@
 			            <label class="col-lg-3 control-label">Semester</label>
 			            <div class="col-lg-8">
 			                <select id="user_time_zone" class="form-control" name="uni_sem">
-			                	<option value="1">One</option>
-			                	<option value="2">Two</option>
-			                	<option value="3">Three</option>
-			                	<option value="4">Four</option>
-			                	<option value="5">Five</option>
-			                	<option value="6">Six</option>
-			                	<option value="internship">Internship</option>
-			                	<option value="graduate">Graduated</option>
+			                	<option value="1" <?php if ($user->uni_sem==1) echo 'selected';?>>One</option>
+			                	<option value="2" <?php if ($user->uni_sem==2) echo 'selected';?>>Two</option>
+			                	<option value="3" <?php if ($user->uni_sem==3) echo 'selected';?>>Three</option>
+			                	<option value="4" <?php if ($user->uni_sem==4) echo 'selected';?>>Four</option>
+			                	<option value="5" <?php if ($user->uni_sem==5) echo 'selected';?>>Five</option>
+			                	<option value="6" <?php if ($user->uni_sem==6) echo 'selected';?>>Six</option>
+			                	<option value="internship" <?php if ($user->uni_sem==8) echo 'selected';?>>Internship</option>
+			                	<option value="graduate" <?php if ($user->uni_sem==9) echo 'selected';?>>Graduated</option>
 			                </select>
 			            </div>
 			        </div>
@@ -77,10 +77,10 @@
 			            <label class="col-lg-3 control-label">University</label>
 			            <div class="col-lg-8">
 			                <select id="user_time_zone" class="form-control" name="uni_name">
-			                	<option value="uum" {{ $user->uni_name=='Universiti Utara Malaysia' ? ' selected':'' }}>(UUM) Universiti Utara Malaysia</option>
-			                	<option value="unimap" {{ $user->uni_name=='Universiti Malaysia Perlis' ? ' selected':'' }}>(UNIMAP) Universiti Malaysia Perlis</option>
-			                	<option value="usm" {{ $user->uni_name=='Universiti Sains Malaysia' ? ' selected':'' }}>(USM) Universiti Sains Malaysia</option>
-			                	<!--option value="upsi">(UPSI) Universiti Pendidikan Sultan Idris</option>
+			                	<option value="uum" {{ $user->uni_name=='uum' ? ' selected':'' }}>(UUM) Universiti Utara Malaysia</option>
+			                	<option value="unimap" {{ $user->uni_name=='unimap' ? ' selected':'' }}>(UNIMAP) Universiti Malaysia Perlis</option>
+			                	<option value="usm" {{ $user->uni_name=='usm' ? ' selected':'' }}>(USM) Universiti Sains Malaysia</option>
+			                	<option value="upsi">(UPSI) Universiti Pendidikan Sultan Idris</option>
 				                <option value="um">(UM) Universiti Malaya</option>
 				                <option value="upnm">(UPNM) Universiti Pertahanan Nasional Malaysia</option>
 				                <option value="ukm">(UKM) Universiti Kebangsaan Malaysia</option>
@@ -97,14 +97,14 @@
 				                <option value="uthm">(UTHM) Universiti Tun Hussein Onn Malaysia</option>
 				                <option value="utm">(UTM) Universiti Teknologi Malaysia</option>
 				                <option value="ums">(UMS) Universiti Malaysia Sabah</option>
-				                <option value="unimas">(UNIMAS) Universiti Malaysia Sarawak</option-->
+				                <option value="unimas">(UNIMAS) Universiti Malaysia Sarawak</option>
 			                </select>
 			            </div>
 			        </div>		          
 			        <div class="form-group">
 			            <label class="col-lg-3 control-label">Course</label>
 			            <div class="col-lg-8">
-			            	<input class="form-control" value="Course" type="text" name="uni_course" {{ $user->uni_courser? 'value="' .$user->uni_course. '"':'' }}>
+			            	<input class="form-control" placeholder="Your Course and Majoring" type="text" name="uni_course" value="{{ $user->uni_course? $user->uni_course :'' }}">
 			            </div>
 			        </div>
 			        <!--
@@ -157,7 +157,7 @@
 			        <div class="form-group">
 			            <label class="col-lg-3 control-label"></label>
 			            <div class="col-lg-8 account-btn">
-			            	<input class="btn btn-success" value="Save Changes" type="button">
+			            	<input class="btn btn-success" value="Save Changes" type="submit">
 			            	<input class="btn btn-default" value="Cancel" type="reset">
 			            </div>
 			        </div>
