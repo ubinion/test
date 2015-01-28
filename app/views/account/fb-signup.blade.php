@@ -103,6 +103,9 @@
 						<input type="hidden" name="uni_name" {{ $schName ? 'value="' .e($schName). '"':'' }} />
 						<input type="hidden" name="uni_college" value='' />
 						<input type="hidden" name="uni_course" value='' />
+
+						<input type="hidden" name="work_company" {{ $work_company ? 'value="' .e($work_company). '"':'' }} />
+						<input type="hidden" name="work_pos" {{ $work_pos ? 'value="' .e($work_pos). '"':'' }} />
 						
 						@if(!empty($user_fb['location']))
 						<input type="hidden" name="city_current"  {{ $user_fb['location']->name ? 'value="' .e($user_fb['location']->name). '"':'' }}/>

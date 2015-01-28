@@ -51,6 +51,12 @@
 			$response = $request->execute();
 			return $response->getGraphObject();
 		}
+
+		public function getGraphArray(){
+			$request = new FacebookRequest($this->session, 'GET', '/me');
+			$response = $request->execute();
+			return $response->getGraphObject()->asArray();
+		}
 	}
 
 ?>
