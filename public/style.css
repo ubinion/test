@@ -499,7 +499,7 @@ html {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 40px;
+  height: auto;
   font-size: 15px;  
   background-color: #1a202c;
 }
@@ -518,8 +518,24 @@ html {
   padding: 0 20px;
   color: #72B095
 }
-
+.footer_row{
+  margin-left: 0;
+  margin-right: 0;
+}
+/*.privacy_terms{
+  float: right;
+  padding-right: 90px;
+  color: #72B095
+}/*
+/*.terms{
+  float: right;
+  padding-right: 20px;
+  color: #72B095
+}*/
 @media (max-width: 767px){
+  .footer{
+    padding-top: 20px;
+  }
   .copy-right{
     display: block;
     text-align: center;

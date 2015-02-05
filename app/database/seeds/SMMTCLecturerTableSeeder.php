@@ -3,20 +3,20 @@ class SMMTCLecturerTableSeeder extends Seeder {
 	public function run()
 	{
 	  	Lecturer::create(array(
-			'id'		=> '123',
-			'name' 		=> 'Tommy Yeap',
-			'email' 	=> 'ms.yeap91@gmail.com',
-			'college_id'=> 'CAS',
-			'sch_id'	=> 'SMMTC'
-		));
-
-		Lecturer::create(array(
-			'id'		=>	'5885',
-			'name' 		=> 'Lecturer Full Name',
-			'email' 	=> 'xxx@uum.edu.com',
+			'id'		=> '402',
+			'name' 		=> 'Prof. Dr. Che Su Bt Mustaffa',
+			'email' 	=> 'chesu402@uum.edu.my',
 			'college_id'=> 'CAS',
 			'sch_id'	=> 'SMMTC',
-			'room'		=>	'2034 SOC (If have room info)'
+			'room'		=> '2.19 Block A'
 		));
+	  	Lecturer::create(array(
+			'id'		=> '123',
+			'name' 		=> 'Yeap',
+			'email' 	=> 'email',
+			'college_id'=> 'CAS',
+			'sch_id'	=> 'SMMTC'
+		));		
+
 	}
 }

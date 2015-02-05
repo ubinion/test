@@ -7,6 +7,9 @@ Route::get('login/fb/callback',array('as'=>'fb_callback', 'uses'=>'LoginFacebook
 
 Route::get('/about/about',array('as'=>'about-page', 'uses'=>'AboutPageController@getAboutPage'));
 
+Route::get('/privacy_terms/privacy',array('as'=>'privacy-page', 'uses'=>'PrivacyTermsController@getPrivacyPage'));
+
+Route::get('/privacy_terms/terms',array('as'=>'terms-page', 'uses'=>'PrivacyTermsController@getTermsPage'));
 /*
 |	Authenticated group
 */
