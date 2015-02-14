@@ -1,4 +1,20 @@
 <?php
+
+Blade::setContentTags('<%', '%>');        // for variables and all things Blade
+Blade::setEscapedContentTags('<%%', '%%>');   // for escaped data
+	
+// =============================================
+// API ROUTES ==================================
+// =============================================
+Route::group(array('prefix' => 'api'), function() {
+
+	// since we will be using this just for CRUD, we won't need create and edit
+	// Angular will handle both of those forms
+	// this ensures that a user can't access api/create or api/edit when there's nothing there
+	Route::resource('comments', 'CommentController', 
+		array('except' => array('create', 'edit', 'update')));
+});
+
 Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@index'));
 
 Route::get('login/fb',array('as'=>'fb_login', 'uses'=>'LoginFacebookController@login'));
