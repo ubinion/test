@@ -6,7 +6,7 @@ app/config/mail.php
 .htaccess
 bower_components
 node_modules
-vendor/
+vendor/**
 
 # Compiled source #
 ###################
