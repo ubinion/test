@@ -9,7 +9,7 @@ class ConfessionDetailController extends BaseController {
 	 */
 	public function show($id)
 	{
-		return Response::json(User::select('first_name','last_name','fb_uid','photo_url')->find($id));
+		return Response::json(User::select('first_name','last_name','photo_url')->find($id));
 	}
 
 }

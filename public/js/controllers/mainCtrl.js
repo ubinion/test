@@ -109,6 +109,7 @@ angular.module('mainCtrl', [])
 				//if the user is the sender
 				if(confession.sender === uid)
 					confession.user_own_post=true;
+					
 			}
 
 			if(confession.id>0 && confession.anonymous!= 1){
