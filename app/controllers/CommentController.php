@@ -1,6 +1,5 @@
 <?php
-
-class CommentController extends \BaseController {
+class CommentController extends BaseController {
 
 	/**
 	 * Send back all comments as JSON
@@ -26,7 +25,7 @@ class CommentController extends \BaseController {
 		}else{
 			$id=0;
 		}
-		
+
 		Comment::create(array(
 			//need to save sender id no matter anonymous or not
 			'sender' => $id,

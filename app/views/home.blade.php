@@ -12,7 +12,7 @@
 					    width: 30px;" ></a>
 			    	<div class="input-group">
 			    		<input type="hidden" name="author" ng-model="commentData.sender"/>
-				        <input type="text" class="form-control input-sm chat-input" name="comment" ng-model="commentData.content" placeholder="Confess here!" required/>
+				        <input type="text" class="form-control input-sm chat-input" name="comment" ng-change="checkUserLogin()" ng-model="commentData.content" placeholder="Confess here!" required/>
 					    <span class="input-group-btn" >     
 				            <input type="submit" class="btn btn-success btn-sm" value="Post">
 				        </span>    
