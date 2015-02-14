@@ -80,7 +80,7 @@
 			</ul>
 			<p>
 				You must be at least <strong>17</strong> to use our Services. Our Services are not designed for children under <strong>13</strong>. If we discover that a child under 13 has provided us with personal information, we will delete such information from our systems.
-				Contact Us
+				<a href="url" class="about" data-toggle="modal" data-target="#ContactModal">Contact Us</a>
 			</p>
 			</p>
 				If you have questions about the privacy aspects of our Services or would like to make a complaint, please contact us at <a href="#">support@ubinion.com</a>

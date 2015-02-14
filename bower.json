@@ -1,0 +1,6 @@
+{
+  "name": "UBINION",
+  "dependencies": {
+    "bootstrap": "~3.3.2"
+  }
+}

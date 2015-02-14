@@ -4,6 +4,7 @@ app/config/database.php
 app/config/facebook.php
 app/config/mail.php
 .htaccess
+bower_components
 
 # Compiled source #
 ###################
