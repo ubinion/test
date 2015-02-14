@@ -15,10 +15,19 @@ angular.module('mainCtrl', [])
 			$scope.pic		= userPic;
 		};
 		
+		$scope.checkUserLogin = function(){
+		
+			if($scope.uid===0){
+			
+				alert('Nah... You need to login first to post a comment');
+			}
+		};
+		
 		//toggle the anonymous layout and flag
 		$scope.toggleAnonymous = function() {
 		
 			if($scope.uid===0){
+			
 				alert('Nah... You need to login first to post a comment');
 			}else{
 				if($scope.commentData.anonymous === 0)
@@ -59,23 +68,28 @@ angular.module('mainCtrl', [])
 
 		// function to handle submitting the form
 		$scope.submitComment = function() {
-			$scope.loading = true;
 
-			// save the comment. pass in comment data from the form
-			Comment.save($scope.commentData)
-				.success(function(data) {
-					$scope.commentData = {};
-					// if successful, we'll need to refresh the comment list
-					Comment.get()
-						.success(function(getData) {
-							$scope.comments = getData;
-							$scope.loading = false;
-						});
+			if($scope.uid===0){
+				alert('Nah... You need to login first to post a comment');
+			}else{
+				$scope.loading = true;
 
-				})
-				.error(function(data) {
-					console.log(data);
-				});
+				// save the comment. pass in comment data from the form
+				Comment.save($scope.commentData)
+					.success(function(data) {
+						$scope.commentData = {};
+						// if successful, we'll need to refresh the comment list
+						Comment.get()
+							.success(function(getData) {
+								$scope.comments = getData;
+								$scope.loading = false;
+							});
+
+					})
+					.error(function(data) {
+						console.log(data);
+					});
+			}
 		};
 
 		// function to handle deleting a comment
@@ -94,5 +108,4 @@ angular.module('mainCtrl', [])
 
 				});
 		};
-
 	});
