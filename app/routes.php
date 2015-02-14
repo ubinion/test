@@ -13,6 +13,9 @@ Route::group(array('prefix' => 'api'), function() {
 	// this ensures that a user can't access api/create or api/edit when there's nothing there
 	Route::resource('confessions', 'ConfessionController', 
 		array('except' => array('create', 'edit', 'update')));
+		
+	Route::resource('confessionDetails', 'ConfessionDetailController', 
+		array('except' => array('create', 'edit', 'update')));
 });
 
 Route::get('/', array('as'=>'landing', 'uses'=>'HomeController@index'));

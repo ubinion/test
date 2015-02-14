@@ -9,6 +9,7 @@
 <!-- all angular resources will be loaded from the /public folder -->
 <script src="js/controllers/mainCtrl.js"></script> <!-- load our controller -->
 <script src="js/services/confessionService.js"></script> <!-- load our service -->
+<script src="js/services/confessionDetailService.js"></script> <!-- load our service -->
 <script src="js/app.js"></script> <!-- load our application -->
 		
 <script src="js/vendor/ubinion_core.min.js"></script>

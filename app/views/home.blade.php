@@ -27,11 +27,22 @@
 
 			<!-- THE COMMENTS -->
 			<div class="confession-thread" ng-hide="loading" ng-repeat="confession in confessions">
+				<span ng-init="getConfessionDetail(confession, <% $uid %>)"></span>
                 <div class="post-time">
-                	<a href="#"> {{ confession.sender }}-{{ confession.id }} </a>|
+                	<a href="#"> {{ confession.user_name }}</a>|
 					<span class="glyphicon glyphicon-time"></span> {{ formatDate(confession.created_at) }}
-				</div>					
-                <div class="dropdown">
+				</div>
+
+				<div class="dropdown" ng-if="confession.user_own_post===false">
+                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <a href="#"><span class="glyphicon glyphicon-flag"></span></a>
+                    </span>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="deleteConfession(confession.id)">Report as inappropriate</a></li>
+                    </ul>
+                </div>
+
+                <div class="dropdown" ng-if="confession.user_own_post===true">
                     <span class="dropdown-toggle" type="button" data-toggle="dropdown">
                         <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
                     </span>
@@ -42,7 +53,8 @@
 				<div class="media user-post">
 				  <a class="media-left media-middle" href="#">
 				  	<div class="panel-heading">
-				    	<img class="img-circle" src="../public/img/anonymous-icon/anonymous-1.jpg" alt="anonymous" width="46px" height="46px"/>
+				  		<img class="img-circle" src="{{confession.user_photo_url}}" alt="anonymous" width="46px" height="46px"/>
+				    	<!--img class="img-circle" ng-if="confession.anonymous==0" src="{{confession.photo_url}}" alt="anonymous" width="46px" height="46px"/-->
 				  	</div>
 				  </a>
 				  <div class="media-body">

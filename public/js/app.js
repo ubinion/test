@@ -1,1 +1,1 @@
-var commentApp = angular.module('confessionApp', ['mainCtrl', 'confessionService']);
+var commentApp = angular.module('confessionApp', ['mainCtrl', 'confessionService', 'confessionDetailService']);
