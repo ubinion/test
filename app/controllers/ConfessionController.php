@@ -1,5 +1,5 @@
 <?php
-class CommentController extends BaseController {
+class ConfessionController extends BaseController {
 
 	/**
 	 * Send back all comments as JSON
@@ -8,12 +8,10 @@ class CommentController extends BaseController {
 	 */
 	public function index()
 	{
-
-	
-		return Response::json(Comment::leftJoin('users', 'users.id', '=', 'comments.sender')
-					->orderBy('comments.created_at', 'desc')
-					 ->select(	'comments.id', 'comments.content', 'comments.sender', 'comments.anonymous', 
-					 			'comments.up_vote', 'comments.down_vote', 'comments.created_at', 'users.photo_url')
+		return Response::json(Confession::leftJoin('users', 'users.id', '=', 'confessions.sender')
+					->orderBy('confessions.created_at', 'desc')
+					 ->select(	'confessions.id', 'confessions.content', 'confessions.sender', 'confessions.anonymous', 
+					 			'confessions.up_vote', 'confessions.down_vote', 'confessions.created_at', 'users.photo_url')
 					 ->get()
 					 ->take(5));
 	}
@@ -33,7 +31,7 @@ class CommentController extends BaseController {
 			$id=0;
 		}
 
-		Comment::create(array(
+		Confession::create(array(
 			//need to save sender id no matter anonymous or not
 			'sender' => $id,
 			'content' => Input::get('content'),
@@ -51,7 +49,7 @@ class CommentController extends BaseController {
 	 */
 	public function show($id)
 	{
-		return Response::json(Comment::find($id));
+		return Response::json(Confession::find($id));
 	}
 
 	/**
@@ -62,7 +60,7 @@ class CommentController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		Comment::destroy($id);
+		Confession::destroy($id);
 
 		return Response::json(array('success' => true));
 	}

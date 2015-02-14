@@ -1,8 +1,8 @@
 angular.module('mainCtrl', [])
 
-	.controller('mainController', function($scope, $http, Comment) {
-		// object to hold all the data for the new comment form
-		$scope.commentData = {anonymous:0};
+	.controller('mainController', function($scope, $http, Confession) {
+		// object to hold all the data for the new confession form
+		$scope.confessionData = {anonymous:0};
 
 		// loading variable to show the spinning loading icon
 		$scope.loading = true;
@@ -19,7 +19,7 @@ angular.module('mainCtrl', [])
 		
 			if($scope.uid===0){
 			
-				alert('Nah... You need to login first to post a comment');
+				alert('Nah... You need to login first to post a confession');
 			}
 		};
 		
@@ -28,17 +28,19 @@ angular.module('mainCtrl', [])
 		
 			if($scope.uid===0){
 			
-				alert('Nah... You need to login first to post a comment');
+				alert('Nah... You need to login first to post a confession');
 			}else{
-				if($scope.commentData.anonymous === 0)
+				if($scope.confessionData.anonymous === 0)
 				{
-					$scope.commentData.anonymous=1;
+					$scope.confessionData.anonymous =1;
 					$scope.pic 	= $scope.anonymousPic;
+					console.log($scope.confessionData.anonymous);
 				}
 				else
 				{
-					$scope.commentData.anonymous=0;
+					$scope.confessionData.anonymous =0;
 					$scope.pic 	= $scope.userPic;
+					console.log($scope.confessionData.anonymous);
 				}
 			}
 		};
@@ -58,30 +60,30 @@ angular.module('mainCtrl', [])
 			return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + " " + strTime;
 		}
 		
-		// get all the comments first and bind it to the $scope.comments object
-		Comment.get()
+		// get all the confessions first and bind it to the $scope.confessions object
+		Confession.get()
 			.success(function(data) {
-				$scope.comments = data;
+				$scope.confessions = data;
 				$scope.loading = false;
 			});
 
 
 		// function to handle submitting the form
-		$scope.submitComment = function() {
-
+		$scope.submitConfession = function() {
+			console.log($scope.confessionData);
 			if($scope.uid===0){
-				alert('Nah... You need to login first to post a comment');
+				alert('Nah... You need to login first to post a confession');
 			}else{
 				$scope.loading = true;
 
-				// save the comment. pass in comment data from the form
-				Comment.save($scope.commentData)
+				// save the confession. pass in confession data from the form
+				Confession.save($scope.confessionData)
 					.success(function(data) {
-						$scope.commentData = {};
-						// if successful, we'll need to refresh the comment list
-						Comment.get()
+						$scope.confessionData = {anonymous:$scope.confessionData.anonymous};
+						// if successful, we'll need to refresh the confession list
+						Confession.get()
 							.success(function(getData) {
-								$scope.comments = getData;
+								$scope.confessions = getData;
 								$scope.loading = false;
 							});
 
@@ -92,17 +94,17 @@ angular.module('mainCtrl', [])
 			}
 		};
 
-		// function to handle deleting a comment
-		$scope.deleteComment = function(id) {
+		// function to handle deleting a confession
+		$scope.deleteConfession = function(id) {
 			$scope.loading = true; 
 
-			Comment.destroy(id)
+			Confession.destroy(id)
 				.success(function(data) {
 
-					// if successful, we'll need to refresh the comment list
-					Comment.get()
+					// if successful, we'll need to refresh the confession list
+					Confession.get()
 						.success(function(getData) {
-							$scope.comments = getData;
+							$scope.confessions = getData;
 							$scope.loading = false;
 						});
 

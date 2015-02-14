@@ -2,17 +2,18 @@
 
 @section('content')
 <?php //die($photo_url);?>
-		<div class="container" ng-app="commentApp" ng-controller="mainController" 
+		<div class="container" ng-app="confessionApp" ng-controller="mainController" 
 		ng-init="userSetup(<% $uid %>, '<% $photo_url %>');">
 			<div class="post-confession-bar">
-				<form ng-submit="submitComment()">
+				<form ng-submit="submitConfession()">
 					<a href="#" ng-click="toggleAnonymous()"><img class="img-circle pull-left" ng-src="{{pic}}" alt="anonymous" style="
 					    margin: 0 10px 0 -10px;
 					    height: 30px;
 					    width: 30px;" ></a>
 			    	<div class="input-group">
-			    		<input type="hidden" name="author" ng-model="commentData.sender"/>
-				        <input type="text" class="form-control input-sm chat-input" name="comment" ng-change="checkUserLogin()" ng-model="commentData.content" placeholder="Confess here!" required/>
+			    		<input type="hidden" name="author" value="{{confessionData.sender}}"/>
+						<input type="hidden" name="anonymous" value="{{anonymous}}"/>
+				        <input type="text" class="form-control input-sm chat-input" name="confession" ng-change="checkUserLogin()" ng-model="confessionData.content" placeholder="Confess here!" required/>
 					    <span class="input-group-btn" >     
 				            <input type="submit" class="btn btn-success btn-sm" value="Post">
 				        </span>    
@@ -25,17 +26,17 @@
 			<p class="text-center" ng-show="loading">Loading...</p>
 
 			<!-- THE COMMENTS -->
-			<div class="confession-thread" ng-hide="loading" ng-repeat="comment in comments">
+			<div class="confession-thread" ng-hide="loading" ng-repeat="confession in confessions">
                 <div class="post-time">
-                	<a href="#"> {{ comment.sender }}-{{ comment.id }} </a>|
-					<span class="glyphicon glyphicon-time"></span> {{ formatDate(comment.created_at) }}
+                	<a href="#"> {{ confession.sender }}-{{ confession.id }} </a>|
+					<span class="glyphicon glyphicon-time"></span> {{ formatDate(confession.created_at) }}
 				</div>					
                 <div class="dropdown">
                     <span class="dropdown-toggle" type="button" data-toggle="dropdown">
                         <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
                     </span>
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="deleteComment(comment.id)">Delete</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="deleteConfession(confession.id)">Delete</a></li>
                     </ul>
                 </div>					
 				<div class="media user-post">
@@ -46,13 +47,13 @@
 				  </a>
 				  <div class="media-body">
 				  	<div class="confession-content">
-				    	{{ comment.content }}
+				    	{{ confession.content }}
 					</div>
 				  </div><!--/.media-body-->
 				</div><!--media-->
 				<div class="vote-btn">
-					<a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> {{ comment.up_vote}}
-					<a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a> {{comment.down_vote}}
+					<a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> {{ confession.up_vote}}
+					<a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a> {{confession.down_vote}}
 				</div>			
 				<div class="panel-footer">
 					<a href="#"><small><span class="glyphicon glyphicon-comment"></span> Comment</small></a> <!--·

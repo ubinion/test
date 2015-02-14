@@ -17,7 +17,7 @@ class CreateCommentTable extends Migration {
 			$table->increments('id');
 
 			$table->string('content',500);
-			$table->string('sender');
+			$table->integer('sender');
 			$table->boolean('anonymous');
 			$table->integer('reply_to');
 			$table->integer('up_vote');
