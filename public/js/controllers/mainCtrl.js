@@ -107,7 +107,7 @@ angular.module('mainCtrl', [])
 			if(uid>0)
 			{
 				//if the user is the sender
-				if(confession.sender === uid)
+				if(confession.sender == uid)
 					confession.user_own_post=true;
 					
 			}
@@ -126,6 +126,7 @@ angular.module('mainCtrl', [])
 				confession.user_photo_url=$scope.randomUbinionPic();
 				
 			}
+			
 		};
 		// function to handle submitting the form
 		$scope.submitConfession = function() {
