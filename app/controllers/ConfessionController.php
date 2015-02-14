@@ -10,10 +10,10 @@ class ConfessionController extends BaseController {
 	{
 		return Response::json(Confession::leftJoin('users', 'users.id', '=', 'confessions.sender')
 					->orderBy('confessions.created_at', 'desc')
-					 ->select(	'confessions.id', 'confessions.content', 'confessions.sender', 'confessions.anonymous', 
+					->select(	'confessions.id', 'confessions.content', 'confessions.sender', 'confessions.anonymous', 
 					 			'confessions.up_vote', 'confessions.down_vote', 'confessions.created_at', 'users.photo_url')
-					 ->get()
-					 ->take(5));
+					->get()
+					->take(5));
 	}
 
 	/**
@@ -23,7 +23,6 @@ class ConfessionController extends BaseController {
 	 */
 	public function store()
 	{
-
 		//if auth user, get data
 		if(Auth::check()){
 			$id = Auth::id();

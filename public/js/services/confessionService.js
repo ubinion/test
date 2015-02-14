@@ -21,5 +21,4 @@ angular.module('confessionService', [])
 				return $http.delete('api/confessions/' + id);
 			}
 		}
-
 	});
