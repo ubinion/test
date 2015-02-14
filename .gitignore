@@ -7,6 +7,7 @@ app/config/mail.php
 bower_components
 node_modules
 vendor/**
+composer.phar
 
 # Compiled source #
 ###################
