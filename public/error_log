@@ -1,0 +1,4 @@
+[26-Jan-2015 20:29:33 Asia/Kuala_Lumpur] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home4/tommyeap/public_html/test/app/controllers/HomeController.php on line 17
+[26-Jan-2015 20:51:12 Asia/Kuala_Lumpur] PHP Parse error:  syntax error, unexpected 'var_dump' (T_STRING) in /home4/tommyeap/public_html/test/app/controllers/LoginFacebookController.php on line 68
+[26-Jan-2015 20:52:34 Asia/Kuala_Lumpur] PHP Parse error:  syntax error, unexpected 'Auth' (T_STRING) in /home4/tommyeap/public_html/test/app/controllers/LoginFacebookController.php on line 69
+[26-Jan-2015 20:52:50 Asia/Kuala_Lumpur] PHP Parse error:  syntax error, unexpected 'Auth' (T_STRING) in /home4/tommyeap/public_html/test/app/controllers/LoginFacebookController.php on line 69
