@@ -12,20 +12,20 @@ angular.module('mainCtrl', [])
 		$scope.userSetup = function(uid, userPic){
 			$scope.uid 		= uid;
 			$scope.userPic	= userPic;
-			$scope.pic		= userPic;
+			//set to default image if usernot set any image
+			if($scope.userPic == '')
+				$scope.userPic = 'http://www.joesdaily.com/wp-content/uploads/2014/07/star-wars-long-shadow-flat-icons-storm-trooper.jpg';
+				
+			$scope.pic		= $scope.userPic;
 		};
 		
 		$scope.checkUserLogin = function(){
-		
-			if($scope.uid===0){
-			
+			if($scope.uid===0)
 				alert('Nah... You need to login first to post a confession');
-			}
 		};
 		
 		//toggle the anonymous layout and flag
 		$scope.toggleAnonymous = function() {
-		
 			if($scope.uid===0){
 			
 				alert('Nah... You need to login first to post a confession');
@@ -49,7 +49,6 @@ angular.module('mainCtrl', [])
 		$scope.getConfessionData = function(anonymous, cid) {
 		
 			if(cid===0){
-			
 				alert('Nah... You need to login first to post a confession');
 			}else{
 				if($scope.confessionData.anonymous === 0)
@@ -97,28 +96,25 @@ angular.module('mainCtrl', [])
 
 		// get confession data for specific one
 		$scope.getConfessionDetail = function(confession,uid) {
-		
-			confession.user_photo_url=[];
-			confession.user_name=[];
-			confession.user_own_post=[];
-			confession.user_own_post=false;
-			
-			//check only when the user is logged in 
-			if(uid>0)
-			{
-				//if the user is the sender
-				if(confession.sender == uid)
-					confession.user_own_post=true;
-					
-			}
 
+			//check only when the user is logged in 
+			if(uid>0 && confession.sender == uid)
+				confession.user_own_post=true;	
+			
 			if(confession.id>0 && confession.anonymous!= 1){
+			
 				//get confession data
 				ConfessionDetail.show(confession.sender)
 					.success(function(data) {
-						data.photo_url = data.photo_url.replace('?type=large','');
+					console.log(data);
+					
+						if(data.photo_url == null)
+							data.photo_url = 'http://www.joesdaily.com/wp-content/uploads/2014/07/star-wars-long-shadow-flat-icons-storm-trooper.jpg';
+						if (data.photo_url.indexOf("?type=large") >= 0)
+							data.photo_url = data.photo_url.replace('?type=large','');
 						confession.user_photo_url=data.photo_url;
 						confession.user_name=data.first_name+ ' '+data.last_name;
+						
 					});
 					
 			}else{
@@ -143,6 +139,13 @@ angular.module('mainCtrl', [])
 						// if successful, we'll need to refresh the confession list
 						Confession.get()
 							.success(function(getData) {
+								getData.user_photo_url=[];
+								getData.user_photo_url='../public/img/anonymous-icon/anonymous-9';
+								getData.user_name=[];
+								getData.user_name='Default User';
+								getData.user_own_post=[];
+								getData.user_own_post=false;
+								
 								$scope.confessions = getData;
 								$scope.loading = false;
 							});
@@ -164,6 +167,12 @@ angular.module('mainCtrl', [])
 					// if successful, we'll need to refresh the confession list
 					Confession.get()
 						.success(function(getData) {
+							getData.user_photo_url=[];
+							getData.user_photo_url='../public/img/anonymous-icon/anonymous-9';
+							getData.user_name=[];
+							getData.user_name='Default User';
+							getData.user_own_post=[];
+							getData.user_own_post=false;
 							$scope.confessions = getData;
 							$scope.loading = false;
 						});

@@ -53,8 +53,7 @@
 				<div class="media user-post">
 				  <a class="media-left media-middle" href="#">
 				  	<div class="panel-heading">
-				  		<img class="img-circle" src="{{confession.user_photo_url}}" alt="anonymous" width="46px" height="46px"/>
-				    	<!--img class="img-circle" ng-if="confession.anonymous==0" src="{{confession.photo_url}}" alt="anonymous" width="46px" height="46px"/-->
+				  		<img class="img-circle" ng-src="{{confession.user_photo_url}}" alt="anonymous" width="46px" height="46px"/>
 				  	</div>
 				  </a>
 				  <div class="media-body">
