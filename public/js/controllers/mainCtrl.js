@@ -179,4 +179,10 @@ angular.module('mainCtrl', [])
 
 				});
 		};
+		
+		//For voting section
+		$scope.upVoteConfession = function(uid, cid){
+			alert('uid = '+uid + ', cid = '+ cid);
+		};
+		
 	});

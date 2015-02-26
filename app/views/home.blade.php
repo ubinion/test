@@ -63,7 +63,7 @@
 				  </div><!--/.media-body-->
 				</div><!--media-->
 				<div class="vote-btn">
-					<a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> {{ confession.up_vote}}
+					<a href="#" ng-click="upVoteConfession(<% $uid %>, confession.id);"><span class="glyphicon glyphicon-chevron-up"></span></a> {{ confession.up_vote}}
 					<a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a> {{confession.down_vote}}
 				</div>			
 				<div class="panel-footer">

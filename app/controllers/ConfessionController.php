@@ -8,12 +8,34 @@ class ConfessionController extends BaseController {
 	 */
 	public function index()
 	{
+
+		$cid = 1;
+		$uid = 2;
+
+		return Response::json(
+			DB::select(	
+						DB::raw("SELECT 
+							c.id, c.content, c.sender, c.anonymous, 
+			 				c.up_vote, c.down_vote, c.created_at,
+			 				(select COUNT(id) from votes WHERE voter_id='$uid' AND voteable_id=c.id) AS vote_time
+
+			 				FROM confessions c 
+			 				ORDER BY c.created_at DESC
+			 				LIMIT 5
+							")
+						)
+				
+			);
+
+		/*
+left join table style
 		return Response::json(Confession::leftJoin('users', 'users.id', '=', 'confessions.sender')
 					->orderBy('confessions.created_at', 'desc')
 					->select(	'confessions.id', 'confessions.content', 'confessions.sender', 'confessions.anonymous', 
 					 			'confessions.up_vote', 'confessions.down_vote', 'confessions.created_at', 'users.photo_url')
 					->get()
-					->take(5));
+					->take(5));*/
+
 	}
 
 	/**
