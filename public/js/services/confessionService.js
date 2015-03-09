@@ -1,5 +1,4 @@
 angular.module('confessionService', [])
-
 	.factory('Confession', function($http) {
 
 		return {
@@ -19,6 +18,14 @@ angular.module('confessionService', [])
 			},
 			destroy : function(id) {
 				return $http.delete('api/confessions/' + id);
+			},
+			vote : function(voteData){
+				return $http({
+					method: 'POST',
+					url: 'api/confessions/vote/'+voteData.cid,
+					headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+					data: $.param(voteData)
+				});
 			}
 		}
 	});

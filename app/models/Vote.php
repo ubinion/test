@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
@@ -15,9 +14,4 @@ class Vote extends Eloquent implements UserInterface, RemindableInterface {
 	use UserTrait, RemindableTrait;
 
 	protected $table = 'votes';
-
-	/*public function voteable(){
-
-		return $hits->morphTo();
-	}*/
 }

@@ -1,15 +1,16 @@
 angular.module('mainCtrl', [])
-
-	.controller('mainController', function($scope, $http, Confession, ConfessionDetail) {
-		// object to hold all the data for the new confession form
+	.controller('mainController', function($scope, $http, Confession, ConfessionDetail, Vote) {
+		// object to hold all the data for the new confession form, default set anonymous to 0
 		$scope.confessionData = {anonymous:0};
 
 		// loading variable to show the spinning loading icon
 		$scope.loading = true;
+
+		//url for anonymous picture
 		$scope.anonymousPic = 'http://localhost/ubinion2/public/img/anonymous-icon/anonymous-1.jpg';
 		
-		//setup user picture
-		$scope.userSetup = function(uid, userPic){
+		// setup user picture
+		$scope.userSetup = function(uid, userPic) {
 			$scope.uid 		= uid;
 			$scope.userPic	= userPic;
 			//set to default image if usernot set any image
@@ -19,25 +20,22 @@ angular.module('mainCtrl', [])
 			$scope.pic		= $scope.userPic;
 		};
 		
-		$scope.checkUserLogin = function(){
+		$scope.checkUserLogin = function() {
 			if($scope.uid===0)
 				alert('Nah... You need to login first to post a confession');
 		};
 		
 		//toggle the anonymous layout and flag
 		$scope.toggleAnonymous = function() {
-			if($scope.uid===0){
+			if($scope.uid===0) {
 			
 				alert('Nah... You need to login first to post a confession');
 			}else{
-				if($scope.confessionData.anonymous === 0)
-				{
+				if($scope.confessionData.anonymous === 0) {
 					$scope.confessionData.anonymous =1;
 					$scope.pic 	= $scope.anonymousPic;
 					console.log($scope.confessionData.anonymous);
-				}
-				else
-				{
+				}else {
 					$scope.confessionData.anonymous =0;
 					$scope.pic 	= $scope.userPic;
 					console.log($scope.confessionData.anonymous);
@@ -47,18 +45,15 @@ angular.module('mainCtrl', [])
 		
 		//get non anonymous confession info
 		$scope.getConfessionData = function(anonymous, cid) {
-		
-			if(cid===0){
+			if(cid===0) {
 				alert('Nah... You need to login first to post a confession');
 			}else{
-				if($scope.confessionData.anonymous === 0)
-				{
+				if($scope.confessionData.anonymous === 0) {
 					$scope.confessionData.anonymous =1;
 					$scope.pic 	= $scope.anonymousPic;
 					console.log($scope.confessionData.anonymous);
 				}
-				else
-				{
+				else {
 					$scope.confessionData.anonymous =0;
 					$scope.pic 	= $scope.userPic;
 					console.log($scope.confessionData.anonymous);
@@ -97,40 +92,36 @@ angular.module('mainCtrl', [])
 
 		// get confession data for specific one
 		$scope.getConfessionDetail = function(confession,uid) {
-
 			//check only when the user is logged in 
 			if(uid>0 && confession.sender == uid)
 				confession.user_own_post=true;	
 			
-			if(confession.id>0 && confession.anonymous!= 1){
-			
+			if(confession.id>0 && confession.anonymous!= 1) {
 				//get confession data
-				ConfessionDetail.show(confession.sender)
+				ConfessionDetail.show(confession.sender) 
 					.success(function(data) {
-					console.log(data);
 					
 						if(data.photo_url == null)
 							data.photo_url = 'http://www.joesdaily.com/wp-content/uploads/2014/07/star-wars-long-shadow-flat-icons-storm-trooper.jpg';
 						if (data.photo_url.indexOf("?type=large") >= 0)
 							data.photo_url = data.photo_url.replace('?type=large','');
+
 						confession.user_photo_url=data.photo_url;
 						confession.user_name=data.first_name+ ' '+data.last_name;
-						
 					});
 					
-			}else{
+			}else {
 				confession.user_name='Anonymous '+confession.id;
 				confession.user_photo_url=$scope.randomUbinionPic();
-				
 			}
-			
 		};
 		// function to handle submitting the form
-		$scope.submitConfession = function() {
+		$scope.submitConfession = function()
+		{
 			console.log($scope.confessionData);
-			if($scope.uid===0){
+			if($scope.uid===0) {
 				alert('Nah... You need to login first to post a confession');
-			}else{
+			}else {
 				$scope.loading = true;
 
 				// save the confession. pass in confession data from the form
@@ -150,7 +141,6 @@ angular.module('mainCtrl', [])
 								$scope.confessions = getData;
 								$scope.loading = false;
 							});
-
 					})
 					.error(function(data) {
 						console.log(data);
@@ -164,7 +154,6 @@ angular.module('mainCtrl', [])
 
 			Confession.destroy(id)
 				.success(function(data) {
-
 					// if successful, we'll need to refresh the confession list
 					Confession.get()
 						.success(function(getData) {
@@ -182,8 +171,46 @@ angular.module('mainCtrl', [])
 		};
 		
 		//For voting section
-		$scope.upVoteConfession = function(uid, cid){
-			alert('uid = '+uid + ', cid = '+ cid);
+		$scope.voteConfession = function(uid, cid, type, value) {
+			if(uid===0)
+				alert('You need to login first to vote this Confession');
+			else{
+				var voteData = {uid:uid, cid:cid, type:type, value:value};
+
+				//if upvote
+				if(value === 1)
+					var voteValueDiv = '#upvote-value-'+cid;
+				else
+					var voteValueDiv = '#downvote-value-'+cid;
+
+				//get current vote value and add one
+				var voteValue = $(voteValueDiv).attr('value');
+				$(voteValueDiv).html(++voteValue);
+
+				//$('#vote-btn-'+cid).addClass('disabled');
+				$('#vote-btn-'+cid).children('a').removeAttr('ng-click').css('color','grey');
+	
+				Vote.save(voteData)
+				.success(function(data) {
+					console.log(data);
+					//update the total in Confession Table
+					Confession.vote(voteData)
+					.success(function(data) {
+						console.log(data);
+					})
+					.error(function(data) {
+						console.log(data);
+					});
+				})
+				.error(function(data) {
+					console.log(data);
+				});
+
+			}
+				
 		};
-		
+		//display login message / modal
+		$scope.displayVotedMessage = function(){
+			alert('nah... you voted before');
+		};
 	});

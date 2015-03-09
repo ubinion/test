@@ -51,21 +51,29 @@
                     </ul>
                 </div>					
 				<div class="media user-post">
-				  <a class="media-left media-middle" href="#">
-				  	<div class="panel-heading">
-				  		<img class="img-circle" ng-src="{{confession.user_photo_url}}" alt="anonymous" width="46px" height="46px"/>
-				  	</div>
-				  </a>
-				  <div class="media-body">
-				  	<div class="confession-content">
-				    	{{ confession.content }}
-					</div>
-				  </div><!--/.media-body-->
+				 	<a class="media-left media-middle" href="#">
+						<div class="panel-heading">
+					  		<img class="img-circle" ng-src="{{confession.user_photo_url}}" alt="anonymous" width="46px" height="46px"/>
+						</div>
+				 	</a>
+					<div class="media-body">
+					  	<div class="confession-content">
+							{{ confession.content }}
+						</div>
+					</div><!--/.media-body-->
 				</div><!--media-->
-				<div class="vote-btn">
-					<a href="#" ng-click="upVoteConfession(<% $uid %>, confession.id);"><span class="glyphicon glyphicon-chevron-up"></span></a> {{ confession.up_vote}}
-					<a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a> {{confession.down_vote}}
-				</div>			
+				<div class="vote-btn" id="vote-btn-{{confession.id}}" ng-if="confession.vote_time > 0">
+					<a href="javascript:void(0);" ng-click="displayVotedMessage();" ng-disabled="1"><span class="glyphicon glyphicon-chevron-up"></span></a> 
+					<span id="upvote-value-{{confession.id}}" value="{{ confession.up_vote}}">{{ confession.up_vote}}</span>
+					<a href="javascript:void(0);" ng-click="displayVotedMessage();" ng-disabled="1"><span class="glyphicon glyphicon-chevron-down"></span></a> 
+					<span id="downvote-value-{{confession.id}}" value="{{ confession.down_vote}}">{{confession.down_vote}}</span>
+				</div>
+				<div class="vote-btn" id="vote-btn-{{confession.id}}" ng-if="confession.vote_time === 0">
+					<a href="javascript:void(0);" ng-click="voteConfession(<% $uid %>, confession.id, 'Confession', 1);" ng-disabled="1"><span class="glyphicon glyphicon-chevron-up"></span></a> 
+					<span id="upvote-value-{{confession.id}}" value="{{ confession.up_vote}}">{{ confession.up_vote}}</span>
+					<a href="javascript:void(0);" ng-click="voteConfession(<% $uid %>, confession.id, 'Confession', -1);" ng-disabled="1"><span class="glyphicon glyphicon-chevron-down"></span></a> 
+					<span id="downvote-value-{{confession.id}}" value="{{ confession.down_vote}}">{{confession.down_vote}}</span>
+				</div>
 				<div class="panel-footer">
 					<a href="#"><small><span class="glyphicon glyphicon-comment"></span> Comment</small></a> <!--·
 					<a href="#"><small><span class="glyphicon glyphicon-share"></span> Share</small></a-->

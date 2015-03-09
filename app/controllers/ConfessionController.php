@@ -8,9 +8,7 @@ class ConfessionController extends BaseController {
 	 */
 	public function index()
 	{
-
-		$cid = 1;
-		$uid = 2;
+		$uid = $this->getAuthId();
 
 		return Response::json(
 			DB::select(	
@@ -26,17 +24,35 @@ class ConfessionController extends BaseController {
 						)
 				
 			);
-
-		/*
-left join table style
-		return Response::json(Confession::leftJoin('users', 'users.id', '=', 'confessions.sender')
-					->orderBy('confessions.created_at', 'desc')
-					->select(	'confessions.id', 'confessions.content', 'confessions.sender', 'confessions.anonymous', 
-					 			'confessions.up_vote', 'confessions.down_vote', 'confessions.created_at', 'users.photo_url')
-					->get()
-					->take(5));*/
-
 	}
+
+	/**
+	 * Send back all comments as JSON
+	 *
+	 * @return Response
+	 */
+	/*public function index()
+	{
+
+		$cid = 1;
+		$uid = $this->getAuthId();
+
+		return Response::json(
+			DB::select(	
+				DB::raw("SELECT 
+					c.id, c.content, c.sender, c.anonymous, 
+			 		c.up_vote, c.down_vote, c.created_at,
+			 		(select COUNT(id) from votes WHERE voter_id='$uid' AND voteable_id=c.id) AS vote_time
+
+			 		FROM confessions c 
+			 		ORDER BY c.created_at DESC
+			 		LIMIT 5
+				")
+			)
+				
+		);
+
+	}*/
 
 	/**
 	 * Store a newly created resource in storage.
@@ -45,16 +61,11 @@ left join table style
 	 */
 	public function store()
 	{
-		//if auth user, get data
-		if(Auth::check()){
-			$id = Auth::id();
-		}else{
-			$id=0;
-		}
+		$uid = $this->getAuthId();
 
 		Confession::create(array(
 			//need to save sender id no matter anonymous or not
-			'sender' => $id,
+			'sender' => $uid,
 			'content' => Input::get('content'),
 			'anonymous' => Input::get('anonymous')
 		));
@@ -74,6 +85,27 @@ left join table style
 	}
 
 	/**
+	 * Return the specified resource using JSON
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function vote($id)
+	{
+		//$id = Input::get('cid');
+		$confessionData = Confession::find($id);
+
+		if(Input::get('value')==1)
+			$confessionData->up_vote+=1;
+		else
+			$confessionData->down_vote+=1;
+
+		$confessionData->save();
+
+		return Response::json(array('update_vote_value' => true));
+	}
+
+	/**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
@@ -84,6 +116,15 @@ left join table style
 		Confession::destroy($id);
 
 		return Response::json(array('success' => true));
+	}
+
+	private function getAuthId()
+	{
+		//if auth user, get data
+		if(Auth::check())
+			return Auth::id();
+		else
+			return 0;
 	}
 
 }
